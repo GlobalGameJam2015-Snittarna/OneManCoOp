@@ -94,10 +94,10 @@ namespace OneManCoOp
         /// <summary>
         /// move using this.velocity, colliding with tiles if specified. CollidedOnX and CollidedOnY specify if the path was open.
         /// </summary>
-        /// <param name="tileColission"></param>
-        protected void Move(bool tileColission)
+        /// <param name="tileCollision"></param>
+        protected void Move(bool tileCollision)
         {
-            if (tileColission) MoveWithTileCollision();
+            if (tileCollision) MoveWithTileCollision();
             else Move(Velocity.X, Velocity.Y);
         }
 
