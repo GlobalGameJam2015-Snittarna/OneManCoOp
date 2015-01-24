@@ -8,6 +8,11 @@ namespace OneManCoOp
 {
     class Player : GameObject
     {
+        const float FRICTION_GROUND = .95f;
+        const float FRICTION_AIR = .99f;
+        const float ACC_GROUND = 1;
+        const float ACC_AIR = .1f;
+
         public Player(Vector2 position)
         {
             Sprite = new Sprite(TextureManager.player, position, new Vector2(48));
@@ -23,7 +28,9 @@ namespace OneManCoOp
             if (Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) && CollidedOnY) Velocity -= new Vector2(0, 10);
             if (acceleration != Vector2.Zero) acceleration.Normalize();
 
-            Velocity += acceleration;
+            Velocity *= new Vector2((CollidedOnY) ? FRICTION_GROUND : FRICTION_AIR, 1);
+
+            Velocity += acceleration * (CollidedOnY ? ACC_GROUND : ACC_AIR);
 
             Velocity += new Vector2(0, Game1.GRAVITY);
 
