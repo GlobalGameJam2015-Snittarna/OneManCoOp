@@ -25,6 +25,7 @@ namespace OneManCoOp
         SpriteBatch spriteBatch;
 
         Player player;
+        List<Puzzel> puzzels = new List<Puzzel>();
 
         public Game1()
         {
@@ -43,7 +44,6 @@ namespace OneManCoOp
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -63,6 +63,7 @@ namespace OneManCoOp
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
             player = new Player(new Vector2(100));
+            puzzels.Add(new Puzzel(new Vector2(0, 0), Puzzel.Type.Door));
             // TODO: use this.Content to load your game content here
         }
 
@@ -90,6 +91,7 @@ namespace OneManCoOp
             if (Input.newKs.IsKeyDown(Keys.Up)) Camera.Position -= new Vector2(0, 1);
 
             player.Update();
+            foreach (Puzzel p in puzzels) { p.Update(); }
 
             base.Update(gameTime);
         }
@@ -105,6 +107,7 @@ namespace OneManCoOp
 
             Map.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
 
             spriteBatch.End();
             base.Draw(gameTime);

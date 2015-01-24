@@ -19,20 +19,28 @@ namespace OneManCoOp
 
         public Puzzel(Vector2 position2, Type type2)
         {
-            Position = position2;
+            AssignSprite(position2);
             type = type2;
         }
 
         public override void Update()
         {
-            
+            switch(type)
+            {
+                case Type.Door:
+                    if(opening)
+                    {
+                        Sprite.AnimationSpeed = 0.1f;
+                    }
+                    break;
+            }
         }
-        public void AssignSprite()
+        public void AssignSprite(Vector2 position)
         {
             switch(type)
             {
                 case Type.Door:
-                    Sprite = new Sprite(TextureManager.door, Position, new Vector2(TextureManager.door.Width, TextureManager.door.Height), 6, new Point(64, 64), Sprite.AnimationSpeed);
+                    Sprite = new Sprite(TextureManager.door, position, new Vector2(64, 64), 6, new Point(64, 64), 0);
                     break;
             }
         }
