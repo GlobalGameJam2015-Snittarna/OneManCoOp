@@ -14,6 +14,8 @@ namespace OneManCoOp
         const float ACC_GROUND = 1.5f;
         const float ACC_AIR = .50f;
 
+        public byte AnimationFrame { get { return Sprite.Frame; } }
+
         public Player(Vector2 position)
         {
             Sprite = new Sprite(TextureManager.player, position, new Vector2(32, 64), 4, new Point(32, 64), 10 / 60f);

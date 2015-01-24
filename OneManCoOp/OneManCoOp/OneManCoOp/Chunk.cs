@@ -32,12 +32,15 @@ namespace OneManCoOp
             {
                 for (int y = 0; y < sizeY; y++)
                 {
+                    //=============== ADD TILES ===============
                     byte type = 255;
                     for (byte i = 0; i < Tile.tileTypes.Length; i++)
                     {
                         if (Tile.tileTypes[i] == mapData[x, y]) type = i;
                     }
                     if(type != 255) Tiles[x, y] = new Tile(position + new Vector2(x, y) * Tile.SIZE, type);
+
+                    //=========== ADD OTHER ITEMS =============
                     else
                     {
                         byte index = 255;
