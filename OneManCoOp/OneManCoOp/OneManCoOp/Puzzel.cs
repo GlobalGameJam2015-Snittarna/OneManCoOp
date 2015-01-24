@@ -52,7 +52,7 @@ namespace OneManCoOp
                     }
                     if (buttonsPressed >= buttonsToOpen) opening = true;
                     //if (Sprite.Frame >= 3) Sprite.AnimationSpeed = 0;
-                    Sprite.AnimationSpeed = (Sprite.Frame >= 5) ? Sprite.AnimationSpeed = 0 : Sprite.AnimationSpeed = Sprite.AnimationSpeed;
+                    Sprite.AnimationSpeed = (Sprite.Frame >= 4) ? Sprite.AnimationSpeed = 0 : Sprite.AnimationSpeed = Sprite.AnimationSpeed;
                     break;
             }
         }
@@ -61,7 +61,7 @@ namespace OneManCoOp
             switch(type)
             {
                 case Type.Door:
-                    Sprite = new Sprite(TextureManager.door, position, new Vector2(64, 64), 6, new Point(64, 64), 0);
+                    Sprite = new Sprite(TextureManager.door, position, new Vector2(32, 32), 5, new Point(32, 32), 0);
                     break;
             }
         }

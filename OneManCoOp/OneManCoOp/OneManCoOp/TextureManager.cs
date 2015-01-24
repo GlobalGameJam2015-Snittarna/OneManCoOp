@@ -22,7 +22,7 @@ namespace OneManCoOp
             map = content.Load<Texture2D>("map");
             tiles = content.Load<Texture2D>("tiles");
             player = content.Load<Texture2D>("player");
-            door = content.Load<Texture2D>("doorAnimation");
+            door = content.Load<Texture2D>("trapdoor");
             button = content.Load<Texture2D>("buttonAnimation");
             ladder = content.Load<Texture2D>("ladder");
         }
