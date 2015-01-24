@@ -16,7 +16,7 @@ namespace OneManCoOp
 
         public Player(Vector2 position)
         {
-            Sprite = new Sprite(TextureManager.player, position, new Vector2(48));
+            Sprite = new Sprite(TextureManager.player, position, new Vector2(32, 64), 4, new Point(32, 64), 10 / 60f);
         }
 
         public override void Update()
