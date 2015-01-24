@@ -9,8 +9,8 @@ namespace OneManCoOp
 {
     class Tile
     {
-        public static Color[] tileTypes = new Color[] { Color.Green, Color.Blue, new Color(1f, .5f, 0, 1f) };
-        public static TileProperties[] TilePrefabs = new TileProperties[] { new TileProperties(0, false), new TileProperties(1, false), new TileProperties(2, true)};
+        public static Color[] tileTypes = new Color[] { Color.Black, new Color(255, 106, 0) };
+        public static TileProperties[] TilePrefabs = new TileProperties[] { new TileProperties(0, true), new TileProperties(1, false), new TileProperties(2, true)};
 
         public enum TileType { Grass = 0, Sea = 1, Wood = 2 }
 

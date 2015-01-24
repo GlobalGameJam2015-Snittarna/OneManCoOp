@@ -18,7 +18,7 @@ namespace OneManCoOp
     {
         public const float GRAVITY = 1;
 
-        public const int SCREEN_W = 1200;
+        public const int SCREEN_W = 1248;
         public const int SCREEN_H = 720;
 
         GraphicsDeviceManager graphics;
@@ -62,7 +62,7 @@ namespace OneManCoOp
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
-            player = new Player(new Vector2(100));
+            player = new Player(new Vector2(500, 4500));
             puzzels.Add(new Puzzel(new Vector2(0, 0), Puzzel.Type.Door));
             // TODO: use this.Content to load your game content here
         }
