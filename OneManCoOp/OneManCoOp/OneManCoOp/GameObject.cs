@@ -101,6 +101,14 @@ namespace OneManCoOp
         }
 
         /// <summary>
+        /// adds velocity to position, not checking any collision.
+        /// </summary>
+        protected void Move()
+        {
+            Position += Velocity;
+        }
+
+        /// <summary>
         /// is called when the object dies.
         /// </summary>
         protected virtual void OnDestroy() { }
