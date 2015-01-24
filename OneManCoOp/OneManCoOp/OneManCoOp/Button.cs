@@ -5,7 +5,13 @@ using System.Text;
 
 namespace OneManCoOp
 {
-    class Buttons
+    class Button : GameObject
     {
+        public bool Activated;
+
+        public Button()
+        {
+
+        }
     }
 }
