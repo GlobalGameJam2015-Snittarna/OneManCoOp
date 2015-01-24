@@ -14,7 +14,7 @@ namespace OneManCoOp
         const float ACC_GROUND = 1.5f;
         const float ACC_AIR = .50f;
 
-        private bool CollidedOnX, CollidedOnY;
+        new private bool CollidedOnX, CollidedOnY, isOnCorpse;
 
         public byte AnimationFrame { get { return Sprite.Frame; } }
 
@@ -79,6 +79,8 @@ namespace OneManCoOp
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S) && !CollidedOnY) acceleration.Y += 1;
                 if ((Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) || Input.ButtonJustPressed(Microsoft.Xna.Framework.Input.Buttons.A)) && CollidedOnY) Velocity -= new Vector2(0, JUMP_SPEED);
 
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S) || Input.newGs.ThumbSticks.Left.Y < -.5f) isOnCorpse = false;
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.W) || Input.newGs.ThumbSticks.Left.Y > .5f) isOnCorpse = true;
                 acceleration.X += Input.newGs.ThumbSticks.Left.X;
 
                 if (acceleration != Vector2.Zero) acceleration.Normalize();
@@ -86,6 +88,7 @@ namespace OneManCoOp
                 Velocity *= new Vector2((CollidedOnY) ? FRICTION_GROUND : FRICTION_AIR, 1);
 
                 Velocity += acceleration * (CollidedOnY ? ACC_GROUND : ACC_AIR);
+                 
 
                 Velocity += new Vector2(0, Game1.GRAVITY);
 
@@ -113,11 +116,20 @@ namespace OneManCoOp
             for (int yi = 0; yi < Math.Abs(Velocity.Y); yi++)
             {
                 Move(0, y);
-                if (IsCollidingWithAny(solidTiles) || (WillTouchCorpse() && y > 0))
+                if (IsCollidingWithAny(solidTiles))
                 {
                     Move(0, -y);
                     Velocity = new Vector2(Velocity.X, 0);
                     CollidedOnY = true;
+                    isOnCorpse = false;
+                    break;
+                }
+                if(WillTouchCorpse() && y > 0 && (isOnCorpse))
+                {
+                    Move(0, -y);
+                    Velocity = new Vector2(Velocity.X, 0);
+                    CollidedOnY = true;
+                    isOnCorpse = true;
                     break;
                 }
             }
@@ -138,6 +150,7 @@ namespace OneManCoOp
                     Move(0, -1);
                 }
             }
+            //isOnCorpse = false;
             return false;
         }
     }
