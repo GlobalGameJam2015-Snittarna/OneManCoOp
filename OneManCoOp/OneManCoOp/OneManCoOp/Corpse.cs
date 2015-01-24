@@ -18,9 +18,10 @@ namespace OneManCoOp
             Sprite.Alpha = 0.5f;
         }
 
-        public override void Update()
+        public void Update(byte frame)
         {
             Position = new Vector2(Game1.corpsesX[tag, Game1.GlobalTimer], Game1.corpsesY[tag, Game1.GlobalTimer]);
+            Sprite.Frame = frame;
         } 
     }
 }
