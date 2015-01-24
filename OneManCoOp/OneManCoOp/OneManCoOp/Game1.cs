@@ -83,8 +83,10 @@ namespace OneManCoOp
             Camera.FollowSpeed = .5f;
             player = new Player(new Vector2(500, 3000));
             //puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
-            puzzels.Add(new Puzzel(new Vector2(player.Position.X + 100, player.Position.Y + 128), Puzzel.Type.Door, 1, 1));
+            puzzels.Add(new Puzzel(new Vector2(player.Position.X + 100, player.Position.Y + 128), Puzzel.Type.Door, 1, 3));
             buttons.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.Red, 1));
+            buttons.Add(new Button(new Vector2(player.Position.X -100, player.Position.Y + 128), Color.Red, 1));
+            buttons.Add(new Button(new Vector2(player.Position.X - 160, player.Position.Y + 128), Color.Red, 1));
             // TODO: use this.Content to load your game content here
         }
 

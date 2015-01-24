@@ -29,6 +29,7 @@ namespace OneManCoOp
 
         public override void Update()
         {
+            //Debug.Print(buttonsPressed.ToString());
             switch(type)
             {
                 case Type.Door:
@@ -42,23 +43,27 @@ namespace OneManCoOp
                     }
                     foreach(Button b in Game1.buttons)
                     {
+                        // Vet inte varför det funkar
                         if (b.Tag == tag)
                         {
                             if (!b.AddPress && b.BeingPressed)
                             {
                                 buttonsPressed += 1;
-                                b.AddPress = true;
                             }
+
                             if (!b.BeingPressed) buttonsPressed = 0;
                         }
                     }
                     if (buttonsPressed >= buttonsToOpen) opening = true;
                     else opening = false;
-                    if (!opening && Sprite.Frame >= 1)
+                    if (!opening && Sprite.Frame > 1)
                     {
-                        Sprite.AnimationSpeed = 0;
-                        Sprite.Frame = 0;
+                        Sprite.AnimationSpeed = -0.3f;
+                        //Sprite.Frame = 0;
                     }
+                    if (!opening && Sprite.Frame <= 0)
+                        Sprite.AnimationSpeed = 0;
+              
                     //if (Sprite.Frame >= 3) Sprite.AnimationSpeed = 0;
                     Sprite.AnimationSpeed = (Sprite.Frame >= 4) ? Sprite.AnimationSpeed = 0 : Sprite.AnimationSpeed = Sprite.AnimationSpeed;
                     break;
