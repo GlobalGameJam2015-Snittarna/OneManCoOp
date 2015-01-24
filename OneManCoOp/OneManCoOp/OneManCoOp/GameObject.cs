@@ -41,7 +41,7 @@ namespace OneManCoOp
 
                 foreach (Chunk c in Map.VisibleChunks)
                 {
-                    foreach (Tile t in c.NonWalkableTiles())
+                    foreach (Tile t in c.SolidTiles())
                     {
                         solidTiles.Add(t);
                     }

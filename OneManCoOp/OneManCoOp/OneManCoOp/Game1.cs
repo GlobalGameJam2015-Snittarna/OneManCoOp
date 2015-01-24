@@ -46,7 +46,11 @@ namespace OneManCoOp
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            Input.Initialize();
+            TextureManager.Load(Content);
+            Map.Initialize();
+            Camera.Position = new Vector2(0);
+            Camera.Scale = 1;
             // TODO: use this.Content to load your game content here
         }
 
@@ -66,11 +70,9 @@ namespace OneManCoOp
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            Input.Update();
 
-            // TODO: Add your update logic here
+            if (Input.newKs.IsKeyDown(Keys.Up)) Camera.Position -= new Vector2(0, 1);
 
             base.Update(gameTime);
         }
@@ -82,9 +84,11 @@ namespace OneManCoOp
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, null, Camera.Transform);
 
-            // TODO: Add your drawing code here
+            Map.Draw(spriteBatch);
 
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

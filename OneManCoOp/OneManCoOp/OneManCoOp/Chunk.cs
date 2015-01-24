@@ -9,7 +9,6 @@ namespace OneManCoOp
 {
     class Chunk
     {
-        static Color[] tileTypes = new Color[] { Color.Green, Color.Blue, new Color(1f, .5f, 0, 1f) };
         public const byte sizeX = 16, sizeY = 8;
         public static Point sizePx { get { return new Point(sizeX * Tile.SIZE, sizeY * Tile.SIZE); } }
 
@@ -30,23 +29,22 @@ namespace OneManCoOp
             {
                 for (int y = 0; y < sizeY; y++)
                 {
-                    //if(!tileTypes.Contains(mapData[x, y])) throw new Exception("Color not valid, pixel " + x + ", " + y);
                     byte type = 0;
-                    for (byte i = 0; i < tileTypes.Length; i++)
+                    for (byte i = 0; i < Tile.tileTypes.Length; i++)
                     {
-                        if (tileTypes[i] == mapData[x, y]) type = i;
+                        if (Tile.tileTypes[i] == mapData[x, y]) type = i;
                     }
                     Tiles[x, y] = new Tile(position + new Vector2(x, y) * Tile.SIZE, type);
                 }
             }
         }
 
-        public List<Tile> NonWalkableTiles()
+        public List<Tile> SolidTiles()
         {
             List<Tile> tiles = new List<Tile>();
             foreach (Tile t in Tiles)
             {
-                //if (!t.Properties.IsWalkable) tiles.Add(t); //TODO: fix
+                if (t.Properties.Solid) tiles.Add(t); 
             }
             return tiles;
         }

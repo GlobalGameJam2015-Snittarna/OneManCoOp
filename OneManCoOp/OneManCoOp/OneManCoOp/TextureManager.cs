@@ -16,6 +16,7 @@ namespace OneManCoOp
         public static void Load(ContentManager content)
         {
             map = content.Load<Texture2D>("map");
+            tiles = content.Load<Texture2D>("tiles");
         }
     }
 }

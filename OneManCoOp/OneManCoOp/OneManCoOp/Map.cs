@@ -32,7 +32,7 @@ namespace OneManCoOp
             {
                 for (int y = 0; y < height; y++)
                 {
-                    chunks[x, y] = new Chunk(Chunk.sizePx * new Vector2(x, y), subChunk(mapData, x * Chunk.size, y * Chunk.size, Chunk.size, Chunk.size));
+                    chunks[x, y] = new Chunk(new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y) * new Vector2(x, y), subChunk(mapData, x * Chunk.sizeX, y * Chunk.sizeY, Chunk.sizeX, Chunk.sizeY));
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace OneManCoOp
             get
             {
                 List<Chunk> c = new List<Chunk>();
-                //foreach (Chunk ch in chunks) if (Camera.AreaIsVisible(ch.position, Chunk.sizePx, Chunk.sizePx)) c.Add(ch);
+                foreach (Chunk ch in chunks) /*if (Camera.AreaIsVisible(ch.position, new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y)))*/ c.Add(ch);
                 return c;
             }
         }
