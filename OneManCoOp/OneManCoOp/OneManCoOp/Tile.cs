@@ -14,7 +14,7 @@ namespace OneManCoOp
 
         public enum TileType { Grass = 0, Sea = 1, Wood = 2 }
 
-        public const byte SIZE = 48;
+        public const byte SIZE = 32;
 
         public Vector2 Position { get; private set; }
         public TileType Type { get; private set; }
