@@ -137,7 +137,7 @@ namespace OneManCoOp
 
             foreach (Corpse c in corpses)
             {
-                c.Update(3);
+                c.Update(player.AnimationFrame);
             }
             base.Update(gameTime);
         }
