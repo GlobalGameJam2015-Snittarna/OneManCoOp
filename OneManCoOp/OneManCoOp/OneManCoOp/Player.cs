@@ -62,9 +62,9 @@ namespace OneManCoOp
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D)) acceleration.X += 1;
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S) && !CollidedOnY) acceleration.Y += 1;
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.W) && !CollidedOnY) acceleration.Y -= 1;
-                acceleration += Input.newGs.ThumbSticks.Left;
+                acceleration += Input.newGs.ThumbSticks.Left * new Vector2(1, -1);
                 if (acceleration != Vector2.Zero) acceleration.Normalize();
-                Velocity = acceleration * 3 * new Vector2(1, -1);
+                Velocity = acceleration * 3;
                 Move(true);
             }
             else

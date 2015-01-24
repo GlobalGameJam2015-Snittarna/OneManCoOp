@@ -35,6 +35,7 @@ namespace OneManCoOp
         internal static List<GameObject> objects;
         internal static List<Puzzel> puzzels = new List<Puzzel>();
         internal static List<Button> buttons = new List<Button>();
+        internal static List<Ladder> ladders = new List<Ladder>();
 
         List<Corpse> corpses = new List<Corpse>();
 
@@ -114,6 +115,7 @@ namespace OneManCoOp
             foreach (GameObject g in objects) g.Update();
             foreach (Button b in buttons) { b.Update(); }
             foreach (Puzzel p in puzzels) { p.Update(); }
+            foreach (Ladder l in ladders) l.Update();
 
             if (GlobalTimer == MAXTIMER)
             {
@@ -145,6 +147,7 @@ namespace OneManCoOp
             foreach (Corpse c in corpses) { c.Draw(spriteBatch); }
             foreach (Button b in buttons) { b.Draw(spriteBatch); }
             foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
+            foreach (Ladder l in ladders) l.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
