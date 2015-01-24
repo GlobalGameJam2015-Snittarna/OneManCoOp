@@ -78,8 +78,8 @@ namespace OneManCoOp
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
             player = new Player(new Vector2(500, 3000));
-            objects.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 0));
-            objects.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.White, 0));
+            puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 0));
+            buttons.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.White, 0));
             // TODO: use this.Content to load your game content here
         }
 
@@ -112,6 +112,8 @@ namespace OneManCoOp
             corpsesY[numberOfCorpses, GlobalTimer] = (int)player.Position.Y;
 
             foreach (GameObject g in objects) g.Update();
+            foreach (Button b in buttons) { b.Update(); }
+            foreach (Puzzel p in puzzels) { p.Update(); }
 
             if (GlobalTimer == MAXTIMER)
             {
@@ -141,6 +143,8 @@ namespace OneManCoOp
             player.Draw(spriteBatch);
             foreach (GameObject g in objects) g.Draw(spriteBatch);
             foreach (Corpse c in corpses) { c.Draw(spriteBatch); }
+            foreach (Button b in buttons) { b.Draw(spriteBatch); }
+            foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
 
             spriteBatch.End();
             base.Draw(gameTime);

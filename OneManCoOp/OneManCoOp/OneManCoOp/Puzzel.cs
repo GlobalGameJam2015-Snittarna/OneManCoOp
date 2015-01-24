@@ -37,9 +37,9 @@ namespace OneManCoOp
                     {
                         Sprite.AnimationSpeed = 0.1f;
                     }
+                    
                     foreach(Button b in Game1.buttons)
                     {
-                        
                         if (!b.AddPress && b.BeingPressed)
                         {
                             buttonsPressed += 1;
