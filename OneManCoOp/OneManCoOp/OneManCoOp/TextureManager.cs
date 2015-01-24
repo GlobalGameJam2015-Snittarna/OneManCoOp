@@ -13,7 +13,8 @@ namespace OneManCoOp
             map, 
             tiles,
             player,
-            door;
+            door,
+            button;
 
         public static void Load(ContentManager content)
         {
@@ -21,6 +22,7 @@ namespace OneManCoOp
             tiles = content.Load<Texture2D>("tiles");
             player = content.Load<Texture2D>("player");
             door = content.Load<Texture2D>("doorAnimation");
+            button = content.Load<Texture2D>("buttonAnimation");
         }
     }
 }
