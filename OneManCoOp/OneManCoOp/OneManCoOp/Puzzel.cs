@@ -50,6 +50,7 @@ namespace OneManCoOp
                             if (!b.BeingPressed) buttonsPressed = 0;
                         }
                     }
+                    if (buttonsPressed >= buttonsToOpen) opening = true;
                     //if (Sprite.Frame >= 3) Sprite.AnimationSpeed = 0;
                     Sprite.AnimationSpeed = (Sprite.Frame >= 5) ? Sprite.AnimationSpeed = 0 : Sprite.AnimationSpeed = Sprite.AnimationSpeed;
                     break;
