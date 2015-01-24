@@ -25,7 +25,6 @@ namespace OneManCoOp
 
         public override void Update()
         {
-            Sprite.AnimationSpeed = -0.5f;
             switch(type)
             {
                 case Type.Door:
@@ -33,6 +32,8 @@ namespace OneManCoOp
                     {
                         Sprite.AnimationSpeed = 0.1f;
                     }
+                    //if (Sprite.Frame >= 3) Sprite.AnimationSpeed = 0;
+                    Sprite.AnimationSpeed = (Sprite.Frame >= 5) ? Sprite.AnimationSpeed = 0 : Sprite.AnimationSpeed = Sprite.AnimationSpeed;
                     break;
             }
         }
