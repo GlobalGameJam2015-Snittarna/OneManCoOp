@@ -38,8 +38,8 @@ namespace OneManCoOp
 
         List<Corpse> corpses = new List<Corpse>();
 
-        public static int[,] corpsesX = new int[100, 1000];
-        public static int[,] corpsesY = new int[100, 1000];
+        public static int[,] corpsesX = new int[99999, 1000];
+        public static int[,] corpsesY = new int[99999, 1000];
 
         public Game1()
         {
@@ -118,6 +118,7 @@ namespace OneManCoOp
                 GlobalTimer = 0;
                 corpses.Add(new Corpse(numberOfCorpses));
                 numberOfCorpses++;
+                player.Position = SPAWNPOSITION;
             }
 
             foreach (Corpse c in corpses)
