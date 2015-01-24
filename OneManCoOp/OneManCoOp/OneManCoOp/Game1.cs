@@ -21,10 +21,17 @@ namespace OneManCoOp
         public const int SCREEN_W = 1200;
         public const int SCREEN_H = 720;
 
+        public static int GlobalTimer;
+        public const int MAXTIMER = 50;
+        public static int numberOfCorpses;
+
+        public static Vector2 SPAWNPOSITION = new Vector2(100);
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         Player player;
+        List<Corpse> corpses = new List<Corpse>();
 
         public Game1()
         {
@@ -62,7 +69,7 @@ namespace OneManCoOp
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
-            player = new Player(new Vector2(100));
+            player = new Player(SPAWNPOSITION);
             // TODO: use this.Content to load your game content here
         }
 
@@ -82,6 +89,8 @@ namespace OneManCoOp
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            GlobalTimer++;
+
             Input.Update();
             if (Input.newKs.IsKeyDown(Keys.Escape)) this.Exit();
 
@@ -90,6 +99,13 @@ namespace OneManCoOp
             if (Input.newKs.IsKeyDown(Keys.Up)) Camera.Position -= new Vector2(0, 1);
 
             player.Update();
+
+            if (GlobalTimer == MAXTIMER)
+            {
+                GlobalTimer = 0;
+                corpses.Add(new Corpse(numberOfCorpses));
+                numberOfCorpses++;
+            }
 
             base.Update(gameTime);
         }
@@ -105,6 +121,10 @@ namespace OneManCoOp
 
             Map.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            foreach (Corpse c in corpses)
+            {
+                //c.Draw(spriteBatch);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);

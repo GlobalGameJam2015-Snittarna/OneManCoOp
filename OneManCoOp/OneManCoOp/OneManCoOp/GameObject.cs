@@ -29,7 +29,6 @@ namespace OneManCoOp
         protected bool CollidedOnX { get; private set; }
         protected bool CollidedOnY { get; private set; }
 
-
         /// <summary>
         /// returns a list of all tiles on the map within 100 pixels.
         /// </summary>
@@ -81,7 +80,7 @@ namespace OneManCoOp
         }
 
 
-        /// <summary>
+        /// <summary>hj
         /// adds the specified values to this.Position.
         /// </summary>
         /// <param name="x"></param>

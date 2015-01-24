@@ -62,7 +62,7 @@ namespace OneManCoOp
 
         /// <summary>
         /// creates a rotated and animated sprite.
-        /// </summary>
+        /// </summary>§
         /// <param name="texture">the spritesheet to be used.</param>
         /// <param name="position"></param>
         /// <param name="size">the size in pixels to be drawn on screen</param>
