@@ -29,13 +29,17 @@ namespace OneManCoOp
 
         public override void Update()
         {
-            Debug.Print(buttonsPressed.ToString());
             switch(type)
             {
                 case Type.Door:
                     if(opening)
                     {
                         Sprite.AnimationSpeed = 0.1f;
+                        if(Hitbox.Intersects(Game1.player.Hitbox))
+                        {
+                            Debug.Print((tag + 1).ToString() + " AAYYAYYY LMAO");
+                            Game1.player.Position = Game1.spawnPoints[4-tag];
+                        }
                     }
                     
                     foreach(Button b in Game1.buttons)
