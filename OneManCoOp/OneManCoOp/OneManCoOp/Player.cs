@@ -25,9 +25,12 @@ namespace OneManCoOp
             Vector2 acceleration = new Vector2(0);
             if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A)) acceleration.X -= 1;
             if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D)) acceleration.X += 1;
-            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Space)) acceleration.Y -= 1;
+            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Space) || Input.newGs.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Pressed) acceleration.Y -= 1;
             if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S)) acceleration.Y += 1;
-            if (Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) && CollidedOnY) Velocity -= new Vector2(0, JUMP_SPEED);
+            if ((Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) || Input.ButtonJustPressed(Microsoft.Xna.Framework.Input.Buttons.A)) && CollidedOnY) Velocity -= new Vector2(0, JUMP_SPEED);
+
+            acceleration.X += Input.newGs.ThumbSticks.Left.X;
+            
             if (acceleration != Vector2.Zero) acceleration.Normalize();
 
             Velocity *= new Vector2((CollidedOnY) ? FRICTION_GROUND : FRICTION_AIR, 1);
