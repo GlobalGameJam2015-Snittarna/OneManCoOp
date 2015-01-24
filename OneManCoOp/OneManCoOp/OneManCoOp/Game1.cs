@@ -21,17 +21,12 @@ namespace OneManCoOp
         public const int SCREEN_W = 1200;
         public const int SCREEN_H = 720;
 
-        public static int GlobalTimer;
-        public const int MAXTIMER = 50;
-        public static int numberOfCorpses;
-
-        public static Vector2 SPAWNPOSITION = new Vector2(100);
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Player player;
-        List<Corpse> corpses = new List<Corpse>();
+        internal static Player player;
+        List<Puzzel> puzzels = new List<Puzzel>();
+        List<Button> buttons = new List<Button>();
 
         public Game1()
         {
@@ -50,7 +45,6 @@ namespace OneManCoOp
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -69,7 +63,9 @@ namespace OneManCoOp
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
-            player = new Player(SPAWNPOSITION);
+            player = new Player(new Vector2(100));
+            puzzels.Add(new Puzzel(new Vector2(0, 0), Puzzel.Type.Door));
+            buttons.Add(new Button(new Vector2(100, 250 + 64), Color.White));
             // TODO: use this.Content to load your game content here
         }
 
@@ -89,8 +85,6 @@ namespace OneManCoOp
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            GlobalTimer++;
-
             Input.Update();
             if (Input.newKs.IsKeyDown(Keys.Escape)) this.Exit();
 
@@ -99,13 +93,8 @@ namespace OneManCoOp
             if (Input.newKs.IsKeyDown(Keys.Up)) Camera.Position -= new Vector2(0, 1);
 
             player.Update();
-
-            if (GlobalTimer == MAXTIMER)
-            {
-                GlobalTimer = 0;
-                corpses.Add(new Corpse(numberOfCorpses));
-                numberOfCorpses++;
-            }
+            foreach (Puzzel p in puzzels) { p.Update(); }
+            foreach (Button b in buttons) { b.Update(); }
 
             base.Update(gameTime);
         }
@@ -121,10 +110,8 @@ namespace OneManCoOp
 
             Map.Draw(spriteBatch);
             player.Draw(spriteBatch);
-            foreach (Corpse c in corpses)
-            {
-                //c.Draw(spriteBatch);
-            }
+            foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
+            foreach (Button b in buttons) { b.Draw(spriteBatch); }
 
             spriteBatch.End();
             base.Draw(gameTime);
