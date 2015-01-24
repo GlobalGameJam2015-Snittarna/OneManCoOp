@@ -133,6 +133,7 @@ namespace OneManCoOp
 
             Move(Velocity.X, 0);
             int x = Velocity.X.CompareTo(0);
+            if (x == 0) x = 1;
             while (IsCollidingWithAny(solidTiles))
             {
                 Move(-x, 0);
@@ -142,6 +143,7 @@ namespace OneManCoOp
 
             Move(0, Velocity.Y);
             int y = Velocity.Y.CompareTo(0);
+            if (y == 0) y = 1;
             while (IsCollidingWithAny(solidTiles))
             {
                 Move(0, -y);
