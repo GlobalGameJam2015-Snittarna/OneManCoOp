@@ -29,14 +29,16 @@ namespace OneManCoOp
             //if(beingPressed && Sprite.Frame <= 2)
             Sprite.AnimationSpeed = (BeingPressed & Sprite.Frame <= 2) ? Sprite.AnimationSpeed = 0.4f : Sprite.AnimationSpeed = 0;
             Sprite.Frame = (!BeingPressed) ? Sprite.Frame = 0 : Sprite.Frame = Sprite.Frame;
-            if (BeingPressed && !AddPress)
+            if (!BeingPressed && !RemovePress)
             {
-                AddPress = true;
+                
             }
             if (!BeingPressed && AddPress)
             {
                 AddPress = false;
             }
+            if (BeingPressed)
+                RemovePress = false;
         }
     }
 }

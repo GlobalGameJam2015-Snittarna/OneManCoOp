@@ -33,6 +33,8 @@ namespace OneManCoOp
         internal static Player player;
 
         internal static List<GameObject> objects;
+        internal static List<Puzzel> puzzels = new List<Puzzel>();
+        internal static List<Button> buttons = new List<Button>();
 
         List<Corpse> corpses = new List<Corpse>();
 
