@@ -114,6 +114,7 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Ladder.cs" />
+    <Compile Include="Lava.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="Player.cs" />
