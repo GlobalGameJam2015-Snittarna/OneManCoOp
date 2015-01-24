@@ -25,6 +25,8 @@ namespace OneManCoOp
         public const int MAXTIMER = 200;
         public static int numberOfCorpses;
 
+        public static bool ResetObjects;
+
         public static Vector2 SPAWNPOSITION = new Vector2(500, 3000);
 
         GraphicsDeviceManager graphics;
@@ -80,7 +82,8 @@ namespace OneManCoOp
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
-            player = new Player(new Vector2(500, 3000));
+            puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
+            buttons.Add(new Button(new Vector2(player.Position.X + 100, player.Position.Y + 128), Color.White, 0));
             SpawnLevelObjects();
             // TODO: use this.Content to load your game content here
         }
@@ -89,8 +92,7 @@ namespace OneManCoOp
         {
             puzzels.Clear();
             buttons.Clear();
-            puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
-            buttons.Add(new Button(new Vector2(player.Position.X + 100, player.Position.Y + 128), Color.White, 0));
+            
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace OneManCoOp
                 corpses.Add(new Corpse(numberOfCorpses));
                 numberOfCorpses++;
                 player.Position = SPAWNPOSITION;
-                SpawnLevelObjects();
+                ResetObjects = true;
             }
 
             foreach (Corpse c in corpses)
