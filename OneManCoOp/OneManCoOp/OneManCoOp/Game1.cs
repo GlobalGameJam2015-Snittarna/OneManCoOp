@@ -32,7 +32,7 @@ namespace OneManCoOp
 
         internal static Player player;
         List<Puzzel> puzzels = new List<Puzzel>();
-        List<Button> buttons = new List<Button>();
+        internal static List<Button> buttons = new List<Button>();
 
         List<Corpse> corpses = new List<Corpse>();
 
@@ -72,8 +72,8 @@ namespace OneManCoOp
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
             player = new Player(new Vector2(500, 3000));
-            puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door));
-            buttons.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.White));
+            puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
+            buttons.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.White, 0));
             // TODO: use this.Content to load your game content here
         }
 
