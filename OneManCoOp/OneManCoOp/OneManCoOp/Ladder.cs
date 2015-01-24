@@ -11,6 +11,7 @@ namespace OneManCoOp
         public Ladder(Vector2 position)
         {
             Sprite = new Sprite(TextureManager.ladder, position, new Vector2(32));
+            Sprite.Origin = Vector2.Zero;
         }
     }
 }
