@@ -12,6 +12,9 @@ namespace OneManCoOp
         public const byte sizeX = 26, sizeY = 100;
         public static Point sizePx { get { return new Point(sizeX * Tile.SIZE, sizeY * Tile.SIZE); } }
 
+        // 1 = ladder
+        static Color[] itemColors = new Color[] { new Color(255, 106, 0) };
+
         public Tile[,] Tiles;
         public Vector2 position { get; private set; }
 
@@ -35,6 +38,28 @@ namespace OneManCoOp
                         if (Tile.tileTypes[i] == mapData[x, y]) type = i;
                     }
                     if(type != 255) Tiles[x, y] = new Tile(position + new Vector2(x, y) * Tile.SIZE, type);
+                    else
+                    {
+                        byte index = 255;
+                        for(byte i = 0; i < itemColors.Length; i++)
+                        {
+                            if (mapData[x, y] == itemColors[i])
+                            {
+                                index = i;
+                                break;
+                            }
+                        }
+
+                        switch((int)index)
+                        {
+                            case 0:
+                                //add ladder
+                                break;
+                            case 1:
+                                //do other stuff
+                                break;
+                        }
+                    }
                 }
             }
         }
