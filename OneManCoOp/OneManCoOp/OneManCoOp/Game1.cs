@@ -17,6 +17,7 @@ namespace OneManCoOp
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         public const float GRAVITY = 1;
+
         public const int SCREEN_W = 900;
         public const int SCREEN_H = 500;
 
@@ -82,8 +83,9 @@ namespace OneManCoOp
         protected override void Update(GameTime gameTime)
         {
             Input.Update();
+            if (Input.newKs.IsKeyDown(Keys.Escape)) this.Exit();
 
-            Camera.Follow(player.Position);
+            Camera.Follow(player.Position, new Vector2(0, 1));
 
             if (Input.newKs.IsKeyDown(Keys.Up)) Camera.Position -= new Vector2(0, 1);
 

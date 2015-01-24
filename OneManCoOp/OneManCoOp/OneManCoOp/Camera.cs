@@ -16,6 +16,11 @@ namespace OneManCoOp
 
         public static Vector2 TotalOffset { get { return Position - Origin; } }
 
+        public static void Follow(Vector2 target, Vector2 multiplier)
+        {
+            Position += (target - Position) * FollowSpeed * multiplier;
+        }
+
         public static void Follow(Vector2 target)
         {
             Position += (target - Position) * FollowSpeed;
