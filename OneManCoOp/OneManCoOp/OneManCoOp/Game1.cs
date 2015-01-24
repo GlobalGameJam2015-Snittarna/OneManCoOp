@@ -25,8 +25,6 @@ namespace OneManCoOp
         public const int MAXTIMER = 200;
         public static int numberOfCorpses;
 
-        public static bool ResetObjects;
-
         public static Vector2 SPAWNPOSITION = new Vector2(500, 3000);
 
         GraphicsDeviceManager graphics;
@@ -62,7 +60,6 @@ namespace OneManCoOp
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            // NOTERA ATT INGET AR LADDAT AN, AKTA ER FOR NULLPOINTERS
             base.Initialize();
         }
 
@@ -82,17 +79,8 @@ namespace OneManCoOp
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
-            puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
-            buttons.Add(new Button(new Vector2(player.Position.X + 100, player.Position.Y + 128), Color.White, 0));
-            SpawnLevelObjects();
+            player = new Player(new Vector2(500, 3000));
             // TODO: use this.Content to load your game content here
-        }
-
-        public void SpawnLevelObjects()
-        {
-            puzzels.Clear();
-            buttons.Clear();
-            
         }
 
         /// <summary>
@@ -134,12 +122,12 @@ namespace OneManCoOp
                 corpses.Add(new Corpse(numberOfCorpses));
                 numberOfCorpses++;
                 player.Position = SPAWNPOSITION;
-                ResetObjects = true;
+                SpawnLevelObjects();
             }
 
             foreach (Corpse c in corpses)
             {
-                c.Update(player.AnimationFrame);
+                c.Update(3);
             }
             base.Update(gameTime);
         }
