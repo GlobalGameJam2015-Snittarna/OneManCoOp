@@ -100,8 +100,6 @@ namespace OneManCoOp
 
             Camera.Follow(player.Position, new Vector2(0, 1));
 
-            if (Input.newKs.IsKeyDown(Keys.Up)) Camera.Position -= new Vector2(0, 1);
-
             player.Update();
             foreach (Puzzel p in puzzels) { p.Update(); }
             foreach (Button b in buttons) { b.Update(); }
