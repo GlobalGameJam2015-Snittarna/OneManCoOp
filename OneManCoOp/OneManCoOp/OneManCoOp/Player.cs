@@ -14,6 +14,8 @@ namespace OneManCoOp
         const float ACC_GROUND = 1.5f;
         const float ACC_AIR = .50f;
 
+        private bool CollidedOnX, CollidedOnY;
+
         public byte AnimationFrame { get { return Sprite.Frame; } }
 
         public Player(Vector2 position)
@@ -87,8 +89,56 @@ namespace OneManCoOp
 
                 Velocity += new Vector2(0, Game1.GRAVITY);
 
-                Move(true);
+                Move();
             }
+        }
+
+        void Move()
+        {
+            CollidedOnX = CollidedOnY = false;
+
+            List<Tile> solidTiles = CloseSolidTiles;
+
+            Move(Velocity.X, 0);
+            int x = Velocity.X.CompareTo(0);
+            if (x == 0) x = 1;
+            while (IsCollidingWithAny(solidTiles))
+            {
+                Move(-x, 0);
+                Velocity = new Vector2(0, Velocity.Y);
+                CollidedOnX = true;
+            }
+
+            int y = Velocity.Y.CompareTo(0);
+            for (int yi = 0; yi < Math.Abs(Velocity.Y); yi++)
+            {
+                Move(0, y);
+                if (IsCollidingWithAny(solidTiles) || (WillTouchCorpse() && y > 0))
+                {
+                    Move(0, -y);
+                    Velocity = new Vector2(Velocity.X, 0);
+                    CollidedOnY = true;
+                    break;
+                }
+            }
+        }
+
+        bool WillTouchCorpse()
+        {
+            foreach (Corpse c in Game1.corpses)
+            {
+                if (!Hitbox.Intersects(c.Hitbox))
+                {
+                    Move(0, 1);
+                    if (Hitbox.Intersects(c.Hitbox))
+                    {
+                        Move(0, -1);
+                        return true;
+                    }
+                    Move(0, -1);
+                }
+            }
+            return false;
         }
     }
 }
