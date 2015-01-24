@@ -8,10 +8,26 @@ namespace OneManCoOp
 {
     class Player : GameObject
     {
-
         public Player(Vector2 position)
         {
             Sprite = new Sprite(TextureManager.player, position, new Vector2(48));
+        }
+
+        public override void Update()
+        {
+            Vector2 acceleration = new Vector2(0);
+            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A)) acceleration.X -= 1;
+            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D)) acceleration.X += 1;
+            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Space)) acceleration.Y -= 1;
+            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S)) acceleration.Y += 1;
+            if (Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) && CollidedOnY) Velocity -= new Vector2(0, 10);
+            if (acceleration != Vector2.Zero) acceleration.Normalize();
+
+            Velocity += acceleration;
+
+            Velocity += new Vector2(0, Game1.GRAVITY);
+
+            Move(true);
         }
     }
 }

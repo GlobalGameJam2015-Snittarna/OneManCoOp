@@ -16,13 +16,21 @@ namespace OneManCoOp
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        public const float GRAVITY = 1;
+        public const int SCREEN_W = 900;
+        public const int SCREEN_H = 500;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Player player;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = SCREEN_W;
+            graphics.PreferredBackBufferHeight = SCREEN_H;
         }
 
         /// <summary>
@@ -51,6 +59,9 @@ namespace OneManCoOp
             Map.Initialize();
             Camera.Position = new Vector2(0);
             Camera.Scale = 1;
+            Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
+            Camera.FollowSpeed = .5f;
+            player = new Player(new Vector2(100));
             // TODO: use this.Content to load your game content here
         }
 
@@ -72,7 +83,11 @@ namespace OneManCoOp
         {
             Input.Update();
 
+            Camera.Follow(player.Position);
+
             if (Input.newKs.IsKeyDown(Keys.Up)) Camera.Position -= new Vector2(0, 1);
+
+            player.Update();
 
             base.Update(gameTime);
         }
@@ -87,6 +102,7 @@ namespace OneManCoOp
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, null, Camera.Transform);
 
             Map.Draw(spriteBatch);
+            player.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);

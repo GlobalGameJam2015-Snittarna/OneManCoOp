@@ -39,7 +39,7 @@ namespace OneManCoOp
             {
                 List<Tile> solidTiles = new List<Tile>();
 
-                foreach (Chunk c in Map.VisibleChunks)
+                foreach (Chunk c in Map.chunks)
                 {
                     foreach (Tile t in c.SolidTiles())
                     {

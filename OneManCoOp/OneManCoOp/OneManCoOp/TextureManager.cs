@@ -18,7 +18,7 @@ namespace OneManCoOp
         {
             map = content.Load<Texture2D>("map");
             tiles = content.Load<Texture2D>("tiles");
-            //player = content.Load<Texture2D>("player");
+            player = content.Load<Texture2D>("player");
         }
     }
 }
