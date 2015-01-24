@@ -60,7 +60,7 @@ namespace OneManCoOp
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            // GÖR INGET HÄR 
+            // NOTERA ATT INGET AR LADDAT AN, AKTA ER FOR NULLPOINTERS
             base.Initialize();
         }
 
