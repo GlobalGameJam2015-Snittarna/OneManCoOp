@@ -38,7 +38,7 @@ namespace OneManCoOp
         internal static List<Ladder> ladders = new List<Ladder>();
         public static List<Vector2> spawnPoints = new List<Vector2>();
 
-        List<Corpse> corpses = new List<Corpse>();
+        internal static List<Corpse> corpses = new List<Corpse>();
 
         public static int[,] corpsesX = new int[99999, 1000];
         public static int[,] corpsesY = new int[99999, 1000];
