@@ -53,7 +53,7 @@ namespace OneManCoOp
                         switch((int)index)
                         {
                             case 0:
-                                //add ladder
+                                Game1.ladders.Add(new Ladder(new Vector2(x, y) * Tile.SIZE));
                                 break;
                             case 1:
                                 //do other stuff

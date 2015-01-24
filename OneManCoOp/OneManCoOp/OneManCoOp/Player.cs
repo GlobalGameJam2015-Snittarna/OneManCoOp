@@ -21,26 +21,6 @@ namespace OneManCoOp
 
         public override void Update()
         {
-            //====================== MOVEMENT ================
-            Vector2 acceleration = new Vector2(0);
-            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A)) acceleration.X -= 1;
-            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D)) acceleration.X += 1;
-            if ((Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Space) || Input.newGs.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Pressed) && !CollidedOnY) acceleration.Y -= 1;
-            if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S) && !CollidedOnY) acceleration.Y += 1;
-            if ((Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) || Input.ButtonJustPressed(Microsoft.Xna.Framework.Input.Buttons.A)) && CollidedOnY) Velocity -= new Vector2(0, JUMP_SPEED);
-
-            acceleration.X += Input.newGs.ThumbSticks.Left.X;
-            
-            if (acceleration != Vector2.Zero) acceleration.Normalize();
-
-            Velocity *= new Vector2((CollidedOnY) ? FRICTION_GROUND : FRICTION_AIR, 1);
-
-            Velocity += acceleration * (CollidedOnY ? ACC_GROUND : ACC_AIR);
-
-            Velocity += new Vector2(0, Game1.GRAVITY);
-
-            Move(true);
-
             //================= ANIMATION ====================
             if (Velocity.Length() > .05f)
             {
@@ -58,6 +38,56 @@ namespace OneManCoOp
             {
                 Sprite.Frame = 3;
                 Sprite.AnimationSpeed = 0;
+            }
+
+            //=========== LADDERS ===========================
+
+            bool collidesWithALadder = false;
+            foreach(Ladder l in Game1.ladders)
+            {
+                if(Hitbox.Intersects(l.Hitbox))
+                {
+                    collidesWithALadder = true;
+                    break;
+                }
+            }
+
+            
+
+
+            if(collidesWithALadder)
+            {
+                Vector2 acceleration = new Vector2(0);
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A)) acceleration.X -= 1;
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D)) acceleration.X += 1;
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S) && !CollidedOnY) acceleration.Y += 1;
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.W) && !CollidedOnY) acceleration.Y -= 1;
+                acceleration += Input.newGs.ThumbSticks.Left;
+                if (acceleration != Vector2.Zero) acceleration.Normalize();
+                Velocity = acceleration * 3 * new Vector2(1, -1);
+                Move(true);
+            }
+            else
+            {
+                //====================== MOVEMENT ================
+                Vector2 acceleration = new Vector2(0);
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A)) acceleration.X -= 1;
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D)) acceleration.X += 1;
+                if ((Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Space) || Input.newGs.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Pressed) && !CollidedOnY) acceleration.Y -= 1;
+                if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S) && !CollidedOnY) acceleration.Y += 1;
+                if ((Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) || Input.ButtonJustPressed(Microsoft.Xna.Framework.Input.Buttons.A)) && CollidedOnY) Velocity -= new Vector2(0, JUMP_SPEED);
+
+                acceleration.X += Input.newGs.ThumbSticks.Left.X;
+
+                if (acceleration != Vector2.Zero) acceleration.Normalize();
+
+                Velocity *= new Vector2((CollidedOnY) ? FRICTION_GROUND : FRICTION_AIR, 1);
+
+                Velocity += acceleration * (CollidedOnY ? ACC_GROUND : ACC_AIR);
+
+                Velocity += new Vector2(0, Game1.GRAVITY);
+
+                Move(true);
             }
         }
     }
