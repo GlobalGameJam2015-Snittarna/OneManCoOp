@@ -25,7 +25,6 @@ namespace OneManCoOp
             beingPressed = (Hitbox.Intersects(Game1.player.Hitbox)) ? true : false;
             //if(beingPressed && Sprite.Frame <= 2)
             Sprite.AnimationSpeed = (beingPressed & Sprite.Frame <= 2) ? Sprite.AnimationSpeed = 0.4f : Sprite.AnimationSpeed = 0;
-            Sprite.Frame = (!beingPressed) ? Sprite.Frame = 0 : Sprite.Frame = Sprite.Frame;
         }
     }
 }
