@@ -75,6 +75,7 @@ namespace OneManCoOp
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Input.Initialize();
             TextureManager.Load(Content);
+            SoundManager.Load(Content);
             objects = new List<GameObject>();
             Map.Initialize();
             Camera.Position = new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y) / 2;

@@ -15,7 +15,9 @@ namespace OneManCoOp
 
         public bool BeingPressed { get; set; }
         public bool AddPress;
-        public bool RemovePress; 
+        public bool RemovePress;
+
+        public bool playedSound;
 
         public Button(Vector2 position2, Color color2, byte tag2)
         {
@@ -34,11 +36,11 @@ namespace OneManCoOp
             {
                 
             }
+
             foreach(Corpse c in Game1.corpses)
             {
                 if(c.Hitbox.Intersects(Hitbox))
                 {
-                    Sprite.AnimationSpeed = 0.4f;
                     BeingPressed = true;
                     if (!BeingPressed && AddPress)
                     {
@@ -48,6 +50,15 @@ namespace OneManCoOp
                         RemovePress = false;
                 }
             }
+            if (Sprite.Frame == 3)
+            {
+                if (!playedSound)
+                {
+                    SoundManager.buttonPress.Play();
+                    playedSound = true;
+                }
+            }
+            if (!BeingPressed) playedSound = false;
             if (!BeingPressed && AddPress)
             {
                 AddPress = false;
