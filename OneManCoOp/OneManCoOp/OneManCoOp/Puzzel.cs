@@ -52,7 +52,11 @@ namespace OneManCoOp
                     }
                     if (buttonsPressed >= buttonsToOpen) opening = true;
                     else opening = false;
-                    //if (!opening)
+                    if (!opening && Sprite.Frame >= 1)
+                    {
+                        Sprite.AnimationSpeed = 0;
+                        Sprite.Frame = 0;
+                    }
                     //if (Sprite.Frame >= 3) Sprite.AnimationSpeed = 0;
                     Sprite.AnimationSpeed = (Sprite.Frame >= 4) ? Sprite.AnimationSpeed = 0 : Sprite.AnimationSpeed = Sprite.AnimationSpeed;
                     break;
