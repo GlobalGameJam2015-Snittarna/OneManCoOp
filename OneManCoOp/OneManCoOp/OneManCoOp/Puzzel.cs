@@ -58,8 +58,8 @@ namespace OneManCoOp
                     else opening = false;
                     if (!opening && Sprite.Frame > 1)
                     {
-                        Sprite.AnimationSpeed = -0.3f;
-                        //Sprite.Frame = 0;
+                        //Sprite.AnimationSpeed = -0.3f;
+                        Sprite.Frame = 0;
                     }
                     if (!opening && Sprite.Frame <= 0)
                         Sprite.AnimationSpeed = 0;
