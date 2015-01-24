@@ -60,6 +60,7 @@ namespace OneManCoOp
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            // GÖR INGET HÄR 
             base.Initialize();
         }
 
@@ -80,9 +81,16 @@ namespace OneManCoOp
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
             player = new Player(new Vector2(500, 3000));
-            puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
-            buttons.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.White, 0));
+            SpawnLevelObjects();
             // TODO: use this.Content to load your game content here
+        }
+
+        public void SpawnLevelObjects()
+        {
+            puzzels.Clear();
+            buttons.Clear();
+            puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
+            buttons.Add(new Button(new Vector2(player.Position.X + 100, player.Position.Y + 128), Color.White, 0));
         }
 
         /// <summary>
@@ -124,6 +132,7 @@ namespace OneManCoOp
                 corpses.Add(new Corpse(numberOfCorpses));
                 numberOfCorpses++;
                 player.Position = SPAWNPOSITION;
+                SpawnLevelObjects();
             }
 
             foreach (Corpse c in corpses)
