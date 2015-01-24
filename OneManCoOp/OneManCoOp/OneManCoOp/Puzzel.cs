@@ -40,12 +40,15 @@ namespace OneManCoOp
                     
                     foreach(Button b in Game1.buttons)
                     {
-                        if (!b.AddPress && b.BeingPressed)
+                        if (b.Tag == tag)
                         {
-                            buttonsPressed += 1;
-                            b.AddPress = true;
+                            if (!b.AddPress && b.BeingPressed)
+                            {
+                                buttonsPressed += 1;
+                                b.AddPress = true;
+                            }
+                            if (!b.BeingPressed) buttonsPressed = 0;
                         }
-                        
                     }
                     //if (Sprite.Frame >= 3) Sprite.AnimationSpeed = 0;
                     Sprite.AnimationSpeed = (Sprite.Frame >= 5) ? Sprite.AnimationSpeed = 0 : Sprite.AnimationSpeed = Sprite.AnimationSpeed;
