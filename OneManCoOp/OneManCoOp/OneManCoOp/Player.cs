@@ -36,6 +36,24 @@ namespace OneManCoOp
             Velocity += new Vector2(0, Game1.GRAVITY);
 
             Move(true);
+
+            if (Velocity.Length() > .05f)
+            {
+                Sprite.AnimationSpeed = Velocity.Length() / 60;
+                if (Velocity.X < 0) Sprite.SpriteEffects = Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally;
+                else if (Velocity.X > 0) Sprite.SpriteEffects = Microsoft.Xna.Framework.Graphics.SpriteEffects.None;
+            }
+            else
+            {
+                Sprite.AnimationSpeed = 0;
+                Sprite.Frame = 0;
+            }
+
+            if (!CollidedOnY)
+            {
+                Sprite.Frame = 3;
+                Sprite.AnimationSpeed = 0;
+            }
         }
     }
 }
