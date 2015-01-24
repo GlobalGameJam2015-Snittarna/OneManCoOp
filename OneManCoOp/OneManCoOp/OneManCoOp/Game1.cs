@@ -21,12 +21,20 @@ namespace OneManCoOp
         public const int SCREEN_W = 1248;
         public const int SCREEN_H = 720;
 
+        public static int GlobalTimer;
+        public const int MAXTIMER = 50;
+        public static int numberOfCorpses;
+
+        public static Vector2 SPAWNPOSITION = new Vector2(100);
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         internal static Player player;
         List<Puzzel> puzzels = new List<Puzzel>();
         List<Button> buttons = new List<Button>();
+
+        List<Corpse> corpses = new List<Corpse>();
 
         public Game1()
         {
@@ -85,6 +93,8 @@ namespace OneManCoOp
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            GlobalTimer++;
+
             Input.Update();
             if (Input.newKs.IsKeyDown(Keys.Escape)) this.Exit();
 
@@ -95,6 +105,14 @@ namespace OneManCoOp
             player.Update();
             foreach (Puzzel p in puzzels) { p.Update(); }
             foreach (Button b in buttons) { b.Update(); }
+
+            if (GlobalTimer == MAXTIMER)
+            {
+                GlobalTimer = 0;
+                corpses.Add(new Corpse(numberOfCorpses));
+                numberOfCorpses++;
+            }
+
 
             base.Update(gameTime);
         }
