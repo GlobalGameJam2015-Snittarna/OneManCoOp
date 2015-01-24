@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace OneManCoOp
 {
@@ -32,6 +33,20 @@ namespace OneManCoOp
             if (!BeingPressed && !RemovePress)
             {
                 
+            }
+            foreach(Corpse c in Game1.corpses)
+            {
+                if(c.Hitbox.Intersects(Hitbox))
+                {
+                    Sprite.AnimationSpeed = 0.4f;
+                    BeingPressed = true;
+                    if (!BeingPressed && AddPress)
+                    {
+                        AddPress = false;
+                    }
+                    if (BeingPressed)
+                        RemovePress = false;
+                }
             }
             if (!BeingPressed && AddPress)
             {

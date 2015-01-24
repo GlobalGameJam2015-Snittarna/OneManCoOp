@@ -40,7 +40,6 @@ namespace OneManCoOp
                             Game1.player.Position = Game1.spawnPoints[4-tag];
                         }
                     }
-                    
                     foreach(Button b in Game1.buttons)
                     {
                         if (b.Tag == tag)
