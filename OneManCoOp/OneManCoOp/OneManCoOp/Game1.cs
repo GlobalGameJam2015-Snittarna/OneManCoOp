@@ -22,7 +22,7 @@ namespace OneManCoOp
         public const int SCREEN_H = 720;
 
         public static int GlobalTimer;
-        public const int MAXTIMER = 200;
+        public static int maxTime;
         public static int numberOfCorpses;
 
         public static Vector2 SPAWNPOSITION = new Vector2(500, 3000);
@@ -40,8 +40,8 @@ namespace OneManCoOp
 
         internal static List<Corpse> corpses = new List<Corpse>();
 
-        public static int[,] corpsesX = new int[99999, 1000];
-        public static int[,] corpsesY = new int[99999, 1000];
+        public static int[,] corpsesX = new int[9999, 9999];
+        public static int[,] corpsesY = new int[9999, 9999];
 
         public static short currentChunk = 1;
 
@@ -73,21 +73,30 @@ namespace OneManCoOp
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             Input.Initialize();
+            
             TextureManager.Load(Content);
+            
             SoundManager.Load(Content);
+            
             objects = new List<GameObject>();
+
             Map.Initialize();
+            
             Camera.Position = new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y) / 2;
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
+
             player = new Player(new Vector2(500, 3000));
             //puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
             puzzels.Add(new Puzzel(new Vector2(player.Position.X + 100, player.Position.Y + 128), Puzzel.Type.Door, 1, 3));
             buttons.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.Red, 1));
             buttons.Add(new Button(new Vector2(player.Position.X -100, player.Position.Y + 128), Color.Red, 1));
             buttons.Add(new Button(new Vector2(player.Position.X - 160, player.Position.Y + 128), Color.Red, 1));
+
+            maxTime = 500;
             // TODO: use this.Content to load your game content here
         }
 
@@ -124,7 +133,7 @@ namespace OneManCoOp
             foreach (Puzzel p in puzzels) { p.Update(); }
             foreach (Ladder l in ladders) l.Update();
 
-            if (GlobalTimer == MAXTIMER)
+            if (GlobalTimer == maxTime)
             {
                 GlobalTimer = 0;
                 corpses.Add(new Corpse(numberOfCorpses));

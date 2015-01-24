@@ -39,6 +39,7 @@ namespace OneManCoOp
                         if(Hitbox.Intersects(Game1.player.Hitbox) && Sprite.Frame >= 3)
                         {
                             Game1.player.Position = Game1.spawnPoints[4-tag];
+                            Game1.maxTime += 500;
                         }
                     }
                     foreach(Button b in Game1.buttons)
