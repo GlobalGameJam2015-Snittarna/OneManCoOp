@@ -25,7 +25,7 @@ namespace OneManCoOp
         public const int MAXTIMER = 50;
         public static int numberOfCorpses;
 
-        public static Vector2 SPAWNPOSITION = new Vector2(100);
+        public static Vector2 SPAWNPOSITION = new Vector2(500, 3000);
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -71,7 +71,7 @@ namespace OneManCoOp
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
-            player = new Player(new Vector2(500, 3000));
+            player = new Player(SPAWNPOSITION);
             puzzels.Add(new Puzzel(new Vector2(0, 0), Puzzel.Type.Door));
             buttons.Add(new Button(new Vector2(100, 250 + 64), Color.White));
             // TODO: use this.Content to load your game content here
@@ -104,11 +104,16 @@ namespace OneManCoOp
             foreach (Puzzel p in puzzels) { p.Update(); }
             foreach (Button b in buttons) { b.Update(); }
 
-            if (GlobalTimer == MAXTIMER)
+            if (GlobalTimer >= MAXTIMER)
             {
                 GlobalTimer = 0;
                 corpses.Add(new Corpse(numberOfCorpses));
                 numberOfCorpses++;
+            }
+
+            foreach (Corpse c in corpses)
+            {
+                c.Update();
             }
 
 
@@ -128,7 +133,7 @@ namespace OneManCoOp
             player.Draw(spriteBatch);
             foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
             foreach (Button b in buttons) { b.Draw(spriteBatch); }
-
+            foreach (Corpse c in corpses) { c.Draw(spriteBatch); }
             spriteBatch.End();
             base.Draw(gameTime);
         }
