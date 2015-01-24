@@ -8,11 +8,11 @@ namespace OneManCoOp
 {
     class Player : GameObject
     {
-        const float JUMP_SPEED = 15;
-        const float FRICTION_GROUND = .95f;
-        const float FRICTION_AIR = .99f;
-        const float ACC_GROUND = 1;
-        const float ACC_AIR = .1f;
+        const float JUMP_SPEED = 13;
+        const float FRICTION_GROUND = .80f;
+        const float FRICTION_AIR = .92f;
+        const float ACC_GROUND = 1.5f;
+        const float ACC_AIR = .50f;
 
         public Player(Vector2 position)
         {
