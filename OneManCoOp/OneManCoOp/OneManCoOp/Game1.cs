@@ -24,8 +24,9 @@ namespace OneManCoOp
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Player player;
+        internal static Player player;
         List<Puzzel> puzzels = new List<Puzzel>();
+        List<Button> buttons = new List<Button>();
 
         public Game1()
         {
@@ -64,6 +65,7 @@ namespace OneManCoOp
             Camera.FollowSpeed = .5f;
             player = new Player(new Vector2(500, 4500));
             puzzels.Add(new Puzzel(new Vector2(0, 0), Puzzel.Type.Door));
+            buttons.Add(new Button(new Vector2(100, 250 + 64), Color.White));
             // TODO: use this.Content to load your game content here
         }
 
@@ -92,6 +94,7 @@ namespace OneManCoOp
 
             player.Update();
             foreach (Puzzel p in puzzels) { p.Update(); }
+            foreach (Button b in buttons) { b.Update(); }
 
             base.Update(gameTime);
         }
@@ -108,6 +111,7 @@ namespace OneManCoOp
             Map.Draw(spriteBatch);
             player.Draw(spriteBatch);
             foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
+            foreach (Button b in buttons) { b.Draw(spriteBatch); }
 
             spriteBatch.End();
             base.Draw(gameTime);

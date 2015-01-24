@@ -25,6 +25,7 @@ namespace OneManCoOp
 
         public override void Update()
         {
+            Sprite.AnimationSpeed = -0.5f;
             switch(type)
             {
                 case Type.Door:
