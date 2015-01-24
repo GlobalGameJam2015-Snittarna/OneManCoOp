@@ -35,9 +35,8 @@ namespace OneManCoOp
                     if(opening)
                     {
                         Sprite.AnimationSpeed = 0.1f;
-                        if(Hitbox.Intersects(Game1.player.Hitbox))
+                        if(Hitbox.Intersects(Game1.player.Hitbox) && Sprite.Frame >= 3)
                         {
-                            Debug.Print((tag + 1).ToString() + " AAYYAYYY LMAO");
                             Game1.player.Position = Game1.spawnPoints[4-tag];
                         }
                     }
