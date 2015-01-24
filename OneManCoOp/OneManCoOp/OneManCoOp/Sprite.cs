@@ -133,6 +133,12 @@ namespace OneManCoOp
                     Frame++;
                     if (Frame >= Frames) Frame = 0;
                 }
+                else if (frameCounter <= -1)
+                {
+                    frameCounter = 0;
+                    if (Frame == 0) Frame = (byte)(Frames - 1);
+                    else Frame--;
+                }
             }
             spriteBatch.Draw(Texture, Position, sourceRectangle, Color * Alpha, Rotation, Origin, scale, SpriteEffects, LayerDepth);
         }
