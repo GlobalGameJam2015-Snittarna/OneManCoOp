@@ -9,7 +9,7 @@ namespace OneManCoOp
 {
     class Chunk
     {
-        public const byte sizeX = 16, sizeY = 8;
+        public const byte sizeX = 25, sizeY = 8;
         public static Point sizePx { get { return new Point(sizeX * Tile.SIZE, sizeY * Tile.SIZE); } }
 
         public Tile[,] Tiles;

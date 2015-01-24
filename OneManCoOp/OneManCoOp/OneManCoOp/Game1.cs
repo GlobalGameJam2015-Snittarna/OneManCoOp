@@ -18,8 +18,8 @@ namespace OneManCoOp
     {
         public const float GRAVITY = 1;
 
-        public const int SCREEN_W = 900;
-        public const int SCREEN_H = 500;
+        public const int SCREEN_W = 1200;
+        public const int SCREEN_H = 720;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -58,7 +58,7 @@ namespace OneManCoOp
             Input.Initialize();
             TextureManager.Load(Content);
             Map.Initialize();
-            Camera.Position = new Vector2(0);
+            Camera.Position = new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y) / 2;
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
