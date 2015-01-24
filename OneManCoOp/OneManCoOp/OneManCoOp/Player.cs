@@ -52,11 +52,9 @@ namespace OneManCoOp
                 }
             }
 
-            
-
-
             if(collidesWithALadder)
             {
+                //================ LADDER MOVEMENT ==============
                 Vector2 acceleration = new Vector2(0);
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A)) acceleration.X -= 1;
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D)) acceleration.X += 1;
