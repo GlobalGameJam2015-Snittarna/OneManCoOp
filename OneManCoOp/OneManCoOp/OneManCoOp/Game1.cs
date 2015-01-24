@@ -22,10 +22,10 @@ namespace OneManCoOp
         public const int SCREEN_H = 720;
 
         public static int GlobalTimer;
-        public const int MAXTIMER = 50;
+        public const int MAXTIMER = 200;
         public static int numberOfCorpses;
 
-        public static Vector2 SPAWNPOSITION = new Vector2(100);
+        public static Vector2 SPAWNPOSITION = new Vector2(500, 3000);
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -33,8 +33,10 @@ namespace OneManCoOp
         internal static Player player;
         List<Puzzel> puzzels = new List<Puzzel>();
         List<Button> buttons = new List<Button>();
-
         List<Corpse> corpses = new List<Corpse>();
+
+        public static int[,] corpsesX = new int[100, 1000];
+        public static int[,] corpsesY = new int[100, 1000];
 
         public Game1()
         {
@@ -101,6 +103,10 @@ namespace OneManCoOp
             Camera.Follow(player.Position, new Vector2(0, 1));
 
             player.Update();
+
+            corpsesX[numberOfCorpses, GlobalTimer] = (int)player.Position.X;
+            corpsesY[numberOfCorpses, GlobalTimer] = (int)player.Position.Y;
+            
             foreach (Puzzel p in puzzels) { p.Update(); }
             foreach (Button b in buttons) { b.Update(); }
 
@@ -111,7 +117,10 @@ namespace OneManCoOp
                 numberOfCorpses++;
             }
 
-
+            foreach (Corpse c in corpses)
+            {
+                c.Update();
+            }
             base.Update(gameTime);
         }
 
@@ -128,6 +137,7 @@ namespace OneManCoOp
             player.Draw(spriteBatch);
             foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
             foreach (Button b in buttons) { b.Draw(spriteBatch); }
+            foreach (Corpse c in corpses) { c.Draw(spriteBatch); }
 
             spriteBatch.End();
             base.Draw(gameTime);

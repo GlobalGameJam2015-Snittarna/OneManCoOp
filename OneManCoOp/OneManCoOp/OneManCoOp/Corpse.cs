@@ -17,6 +17,9 @@ namespace OneManCoOp
             Sprite = new Sprite(TextureManager.player, Game1.SPAWNPOSITION, new Vector2(32, 64), 1, new Point(32, 64), 0);
         }
 
-        
+        public override void Update()
+        {
+            Position = new Vector2(Game1.corpsesX[tag, Game1.GlobalTimer], Game1.corpsesY[tag, Game1.GlobalTimer]);
+        } 
     }
 }
