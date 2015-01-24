@@ -36,6 +36,7 @@ namespace OneManCoOp
         internal static List<Puzzel> puzzels = new List<Puzzel>();
         internal static List<Button> buttons = new List<Button>();
         internal static List<Ladder> ladders = new List<Ladder>();
+        public static List<Vector2> spawnPoints = new List<Vector2>();
 
         List<Corpse> corpses = new List<Corpse>();
 
