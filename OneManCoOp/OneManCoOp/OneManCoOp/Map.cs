@@ -55,14 +55,14 @@ namespace OneManCoOp
             get
             {
                 List<Chunk> c = new List<Chunk>();
-                foreach (Chunk ch in chunks) /*if (Camera.AreaIsVisible(ch.position, new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y)))*/ c.Add(ch);
+                foreach (Chunk ch in chunks) if (Camera.AreaIsVisible(ch.position, new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y))) c.Add(ch);
                 return c;
             }
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Chunk c in VisibleChunks)
+            foreach (Chunk c in chunks)
             {
                 c.Draw(spriteBatch);
             }

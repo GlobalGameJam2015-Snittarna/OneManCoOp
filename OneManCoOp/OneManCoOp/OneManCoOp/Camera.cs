@@ -21,6 +21,7 @@ namespace OneManCoOp
             Position += (target - Position) * FollowSpeed;
         }
 
+        // THIS IS BROKEN, I NEED TO DEBUG BUT I HAVENT
         public static bool AreaIsVisible(Vector2 position, Vector2 size)
         {
             return AreaIsVisible(position.X, position.Y, size.X, size.Y);

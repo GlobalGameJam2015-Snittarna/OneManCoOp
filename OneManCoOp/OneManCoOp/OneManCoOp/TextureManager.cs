@@ -11,12 +11,14 @@ namespace OneManCoOp
     {
         public static Texture2D 
             map, 
-            tiles;
+            tiles,
+            player;
 
         public static void Load(ContentManager content)
         {
             map = content.Load<Texture2D>("map");
             tiles = content.Load<Texture2D>("tiles");
+            //player = content.Load<Texture2D>("player");
         }
     }
 }
