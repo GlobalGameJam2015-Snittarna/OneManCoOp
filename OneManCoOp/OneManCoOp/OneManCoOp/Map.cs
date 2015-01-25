@@ -35,6 +35,14 @@ namespace OneManCoOp
                     chunks[x, y] = new Chunk(new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y) * new Vector2(x, y), subChunk(mapData, x * Chunk.sizeX, y * Chunk.sizeY, Chunk.sizeX, Chunk.sizeY));
                 }
             }
+
+            Game1.spawnPoints.Sort(
+                delegate(Vector2 p1, Vector2 p2)
+                {
+                    int compareDate = p1.Y.CompareTo(p2.Y);
+                    return compareDate;
+                }
+            );
         }
 
         static Color[,] subChunk(Color[,] source, int x, int y, int w, int h)

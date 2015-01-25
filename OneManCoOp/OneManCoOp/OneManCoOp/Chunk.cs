@@ -27,13 +27,6 @@ namespace OneManCoOp
         /// <param name="mapData"></param>
         public Chunk(Vector2 relativePosition, Color[,] mapData)
         {
-            Vector2[] doorPositions = new Vector2[levels];
-            List<Button>[] buttons = new List<Button>[levels];
-            for (int i = 0; i < levels; i++ )
-            {
-                buttons[i] = new List<Button>();
-            }
-
             Tiles = new Tile[sizeX, sizeY];
             position = relativePosition;
 
@@ -62,7 +55,7 @@ namespace OneManCoOp
                             }
                         }
 
-                        byte tag = (byte)((y / 16));
+                        byte tag = (byte)((y * levels) / Chunk.sizeY);
                         switch((int)index)
                         {
                             case 0:
@@ -72,10 +65,10 @@ namespace OneManCoOp
                                 Game1.spawnPoints.Add(new Vector2(x, y) * Tile.SIZE);
                                 break;
                             case 2:
-                                buttons[tag].Add(new Button(new Vector2(x, y) * Tile.SIZE, Color.Red, tag));
+                                Game1.buttons.Add(new Button(new Vector2(x, y) * Tile.SIZE, Color.Red, tag));
                                 break;
                             case 3:
-                                doorPositions[tag] = new Vector2(x, y) * Tile.SIZE;
+                                Game1.puzzels.Add(new Puzzel(new Vector2(x, y) * Tile.SIZE, Puzzel.Type.Door, tag, 1));
                                 break;
                             case 4:
                                 break;
@@ -84,12 +77,6 @@ namespace OneManCoOp
                         }
                     }
                 }
-            }
-
-            foreach (List<Button> bl in buttons) foreach(Button b in bl) Game1.buttons.Add(b);
-            for (int i = 0; i < doorPositions.Length; i++)
-            {
-                Game1.puzzels.Add(new Puzzel(doorPositions[i], Puzzel.Type.Door, (byte)i, (byte)buttons[i].Count));
             }
         }
 
