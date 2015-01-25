@@ -47,7 +47,7 @@ namespace OneManCoOp
                         }
                         if(Sprite.Frame == 4 && !playedSound)
                         {
-                            SoundManager.door.Play();
+                            //SoundManager.door.Play();
                             playedSound = true;
                         }
                     }
