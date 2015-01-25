@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace OneManCoOp
 {
@@ -183,11 +184,6 @@ namespace OneManCoOp
                 if (Input.KeyWasJustPressed(Keys.Escape) || Input.ButtonJustPressed(Buttons.Start)) gameState = GameState.Game;
                 return;
             }
-            else
-            {
-                
-                //roundTime++;
-            }
 
             if (Input.KeyWasJustPressed(Keys.Escape) || Input.ButtonJustPressed(Buttons.Start)) gameState = GameState.Paused;
 
@@ -207,7 +203,7 @@ namespace OneManCoOp
             foreach (Particle p in particles) { p.Update(); }
             foreach (Booster b in boosters) b.Update();
 
-            if (GlobalTimer == maxTime)
+            if (GlobalTimer >= maxTime)
             {
                 GlobalTimer = 0;
                 corpses.Add(new Corpse(numberOfCorpses));
