@@ -10,7 +10,7 @@ namespace OneManCoOp
     {
         public Lava(Vector2 position2)
         {
-            Sprite = new Sprite(TextureManager.door, position2, new Vector2(32, 32), 4, new Point(32, 32), 0.2f);
+            Sprite = new Sprite(TextureManager.lava, position2, new Vector2(32, 32), 4, new Point(32, 32), 0.2f);
 
         }
         public override void Update()
