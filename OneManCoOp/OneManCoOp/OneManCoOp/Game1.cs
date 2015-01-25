@@ -150,6 +150,8 @@ namespace OneManCoOp
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
 
+            GlobalTimer = 0;
+
             player = new Player(spawnPoints[spawnPoints.Count - 1]);
             //puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
             /*puzzels.Add(new Puzzel(new Vector2(player.Position.X + 100, player.Position.Y + 128), Puzzel.Type.Door, 1, 3));
@@ -171,18 +173,17 @@ namespace OneManCoOp
             GlobalTimer++;
 
             Input.Update();
-            if (Input.KeyWasJustPressed(Keys.R)) GlobalTimer = maxTime;
-            if (Input.KeyWasJustPressed(Keys.H)) gameState = GameState.Won;
+            if (Input.KeyWasJustPressed(Keys.R) || Input.ButtonJustPressed(Buttons.Y)) GlobalTimer = maxTime;
             Camera.Follow(player.Position, new Vector2(0, 1));
 
-            if (gameState == GameState.Won && Input.KeyWasJustPressed(Keys.Enter)) gameState = GameState.Credits;
+            if (gameState == GameState.Won && (Input.KeyWasJustPressed(Keys.Enter) || Input.ButtonJustPressed(Buttons.A))) gameState = GameState.Credits;
             if (gameState == GameState.Paused)
             {
-                if (Input.KeyWasJustPressed(Keys.Escape)) gameState = GameState.Game;
+                if (Input.KeyWasJustPressed(Keys.Escape) || Input.ButtonJustPressed(Buttons.Start)) gameState = GameState.Game;
                 return;
             }
 
-            if (Input.KeyWasJustPressed(Keys.Escape)) gameState = GameState.Paused;
+            if (Input.KeyWasJustPressed(Keys.Escape) || Input.ButtonJustPressed(Buttons.Start)) gameState = GameState.Paused;
 
             player.Update();
 

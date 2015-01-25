@@ -19,16 +19,35 @@ namespace OneManCoOp
 
         public bool playedSound;
 
+        bool hasRotated;
+
         public Button(Vector2 position2, Color color2, byte tag2)
         {
             Tag = tag2;
             Sprite = new Sprite(TextureManager.button, position2, new Vector2(32, 32), 4, new Point(32, 32), 0);
             Position = position2;
             Sprite.Color = color2;
-            Sprite.Origin = Vector2.Zero;
+            Sprite.Position += Sprite.Origin;
         }
+
+        private bool TileIsSolid(byte x, byte y)
+        {
+            if (Map.chunks[0, 0].Tiles[x, y] != null) return Map.chunks[0, 0].Tiles[x, y].Properties.Solid;
+            else return false;
+        }
+
         public override void Update()
         {
+            if(!hasRotated)
+            {
+                hasRotated = true;
+                byte tileX = (byte)(Position.X / Tile.SIZE), tileY = (byte)(Position.Y / Tile.SIZE);
+                if (TileIsSolid((byte)(tileX - 1), tileY)) Sprite.Rotation = (float)(Math.PI / 2);
+                if (TileIsSolid((byte)(tileX + 1), tileY)) Sprite.Rotation = -(float)(Math.PI / 2);
+                if (TileIsSolid(tileX, (byte)(tileY + 1))) Sprite.Rotation = 0;
+                if (TileIsSolid(tileX, (byte)(tileY - 1))) Sprite.Rotation = (float)(Math.PI);
+            }
+
             BeingPressed = (Hitbox.Intersects(Game1.player.Hitbox) || IsPressedByCorpse()) ? true : false;
 
             Sprite.AnimationSpeed = (BeingPressed & Sprite.Frame <= 2) ? Sprite.AnimationSpeed = 0.4f : Sprite.AnimationSpeed = 0;
