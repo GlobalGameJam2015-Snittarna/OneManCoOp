@@ -84,6 +84,16 @@ namespace OneManCoOp
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            internal static Player player;
+
+        internal static List<GameObject> objects;
+        internal static List<Puzzel> puzzels = new List<Puzzel>();
+        internal static List<Button> buttons = new List<Button>();
+        internal static List<Ladder> ladders = new List<Ladder>();
+        internal static List<Lava> lavas = new List<Lava>();
+        internal static List<Particle> particles = new List<Particle>();
+        public static List<Vector2> spawnPoints = new List<Vector2>();
+
             gameState = GameState.Game;
 
             Input.Initialize();
