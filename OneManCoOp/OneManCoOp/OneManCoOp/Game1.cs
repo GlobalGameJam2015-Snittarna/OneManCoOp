@@ -121,6 +121,7 @@ namespace OneManCoOp
             buttons.Add(new Button(new Vector2(player.Position.X - 160, player.Position.Y + 128), Color.Red, 1));
             */
             maxTime = 500;
+            //resetGame();
             // TODO: use this.Content to load your game content here
         }
 
@@ -156,6 +157,8 @@ namespace OneManCoOp
 
             GlobalTimer = 0;
 
+            roundTime = 0;
+
             player = new Player(spawnPoints[spawnPoints.Count - 1]);
             //puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
             /*puzzels.Add(new Puzzel(new Vector2(player.Position.X + 100, player.Position.Y + 128), Puzzel.Type.Door, 1, 3));
@@ -179,7 +182,7 @@ namespace OneManCoOp
             Camera.Follow(player.Position, new Vector2(0, 1));
 
             if (gameState == GameState.Won && (Input.KeyWasJustPressed(Keys.Enter) || Input.ButtonJustPressed(Buttons.A))) gameState = GameState.Credits;
-            if (gameState == GameState.Paused)
+            if (gameState == GameState.Paused || gameState == GameState.Won)
             {
                 if (Input.KeyWasJustPressed(Keys.Escape) || Input.ButtonJustPressed(Buttons.Start)) gameState = GameState.Game;
                 return;
@@ -194,8 +197,6 @@ namespace OneManCoOp
             corpsesY[numberOfCorpses, GlobalTimer] = (int)player.Position.Y;
             //corpseEffect[numberOfCorpses, GlobalTimer] = player.Effects;
             //corpseFrame[numberOfCorpses, GlobalTimer] = player.AnimationFrame;
-
-            if (Input.KeyWasJustPressed(Keys.K)) player.Position = spawnPoints[0];
 
             foreach (GameObject g in objects) g.Update();
             foreach (Button b in buttons) { b.Update(); }
@@ -233,9 +234,9 @@ namespace OneManCoOp
             switch(gameState)
             {
                 case GameState.Won:
-                spriteBatch.DrawString(TextureManager.font, "YOU WON THE GAME! YOUR TIME IS: " + roundTime, new Vector2(Camera.Position.X-100, Camera.Position.Y), Color.Yellow);
+                    string ss = "YOU WON THE GAME! YOUR TIME IS: " + (roundTime / 1000);
+                spriteBatch.DrawString(TextureManager.font, ss, new Vector2(Camera.Position.X-100, Camera.Position.Y) - TextureManager.font.MeasureString(ss) / 2, Color.Yellow);
                 spriteBatch.DrawString(TextureManager.font, "Press enter", new Vector2(Camera.Position.X, Camera.Position.Y + 100), Color.White);
-                roundTime = 0;
                     break;
             
                 case GameState.Game:

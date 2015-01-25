@@ -10,9 +10,9 @@ namespace OneManCoOp
 {
     class Chunk
     {
-        const byte levels = 6;
+        const byte levels = 7;
 
-        public const byte sizeX = 26, sizeY = 101;
+        public const byte sizeX = 26, sizeY = 112;
         public static Point sizePx { get { return new Point(sizeX * Tile.SIZE, sizeY * Tile.SIZE); } }
 
         // 0 = ladder, 1 = spawnPoint, 2 = button, 3 = door, 4 = lava, 5 = booster

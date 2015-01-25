@@ -12,6 +12,7 @@ namespace OneManCoOp
         {
             Sprite = new Sprite(TextureManager.ladder, position, new Vector2(32));
             Sprite.Origin = Vector2.Zero;
+            Sprite.LayerDepth = .7f;
         }
     }
 }
