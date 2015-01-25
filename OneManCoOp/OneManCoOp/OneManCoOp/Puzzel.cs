@@ -39,7 +39,7 @@ namespace OneManCoOp
                         Sprite.AnimationSpeed = 0.1f;
                         if(Hitbox.Intersects(Game1.player.Hitbox) && Sprite.Frame >= 3)
                         {
-                            Game1.player.Position = Game1.spawnPoints[tag];
+                            Game1.player.Position = Game1.spawnPoints[tag-1];
                             Game1.maxTime = 500 * (Game1.puzzels.Count + 1 - tag);
                         }
                     }
