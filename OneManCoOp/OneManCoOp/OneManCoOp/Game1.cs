@@ -30,6 +30,8 @@ namespace OneManCoOp
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public byte flashCount;
+
         public static bool Won;
 
         internal static Player player;
@@ -169,7 +171,16 @@ namespace OneManCoOp
             else
             {
                 Color tmpColor = new Color(255, 255 - (maxTime - GlobalTimer)/5, 255 - (maxTime - GlobalTimer)/5);
-                spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer), new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
+                
+                if ((maxTime - GlobalTimer) / 60 <= 3)
+                {
+                    flashCount += 1;
+                    if (flashCount % 4 == 0) spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
+                }
+                else
+                {
+                    spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
+                }
             }
         }
         
