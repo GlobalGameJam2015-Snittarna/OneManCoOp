@@ -230,8 +230,9 @@ namespace OneManCoOp
             switch(gameState)
             {
                 case GameState.Won:
-                spriteBatch.DrawString(TextureManager.font, "YOU WON THE GAME!", new Vector2(Camera.Position.X-100, Camera.Position.Y), Color.Yellow);
+                spriteBatch.DrawString(TextureManager.font, "YOU WON THE GAME! YOUR TIME IS: " + roundTime, new Vector2(Camera.Position.X-100, Camera.Position.Y), Color.Yellow);
                 spriteBatch.DrawString(TextureManager.font, "Press enter", new Vector2(Camera.Position.X, Camera.Position.Y + 100), Color.White);
+                roundTime = 0;
                     break;
             
                 case GameState.Game:
