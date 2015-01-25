@@ -43,7 +43,7 @@ namespace OneManCoOp
                         {
                             if (tag > 0) Game1.player.Position = Game1.spawnPoints[tag - 1];
                             else Game1.gameState = Game1.GameState.Won;
-                            Game1.maxTime = 500 * (Game1.puzzels.Count + 1 - tag);
+                            Game1.maxTime = 600 * (Game1.puzzels.Count + 1 - tag);
                         }
                         if(Sprite.Frame == 4 && !playedSound)
                         {

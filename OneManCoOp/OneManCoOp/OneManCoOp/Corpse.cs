@@ -15,7 +15,7 @@ namespace OneManCoOp
         {
             tag = newTag;
             Sprite = new Sprite(TextureManager.player, Game1.SPAWNPOSITION, new Vector2(32, 64), 1, new Point(32, 64), 0);
-            Sprite.Alpha = 0.5f;
+            Sprite.Alpha = 0.35f;
         }
 
         public void Update()
