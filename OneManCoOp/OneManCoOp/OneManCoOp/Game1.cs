@@ -34,6 +34,8 @@ namespace OneManCoOp
 
         public byte flashCount;
 
+        byte creditsDelay;
+
         public static GameState gameState;
 
         internal static Player player;
@@ -83,29 +85,24 @@ namespace OneManCoOp
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            internal static Player player;
-
-        internal static List<GameObject> objects;
-        internal static List<Puzzel> puzzels = new List<Puzzel>();
-        internal static List<Button> buttons = new List<Button>();
-        internal static List<Ladder> ladders = new List<Ladder>();
-        internal static List<Lava> lavas = new List<Lava>();
-        internal static List<Particle> particles = new List<Particle>();
-        public static List<Vector2> spawnPoints = new List<Vector2>();
+            List<Puzzel> puzzels = new List<Puzzel>();
+            List<Button> buttons = new List<Button>();
+            List<Ladder> ladders = new List<Ladder>();
+            List<Lava> lavas = new List<Lava>();
+            List<Particle> particles = new List<Particle>();
 
             gameState = GameState.Game;
 
             Input.Initialize();
-            
+
             TextureManager.Load(Content);
-            
+
             SoundManager.Load(Content);
-            
+
             objects = new List<GameObject>();
 
             Map.Initialize();
-            
+
             Camera.Position = new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y) / 2;
             Camera.Scale = 1;
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
@@ -197,6 +194,7 @@ namespace OneManCoOp
             {
                 case GameState.Won:
                 spriteBatch.DrawString(TextureManager.font, "YOU WON THE GAME!", new Vector2(Camera.Position.X-100, Camera.Position.Y), Color.Yellow);
+
                     break;
             
                 case GameState.Game:
@@ -216,6 +214,12 @@ namespace OneManCoOp
                 case GameState.Credits:
                     string s = "Made by:\nJohannes Larsson\nTom Leonardsson\nKristoffer Franzon\nEmil Jönsson";
                     spriteBatch.DrawString(TextureManager.font, s, Camera.TotalOffset + Camera.Origin - TextureManager.font.MeasureString(s) / 2, Color.White);
+                    creditsDelay += 1;
+                    if (Input.KeyWasJustPressed(Keys.Enter) && creditsDelay >= 10)
+                    {
+                        //LoadContent();
+                        gameState = GameState.Game;
+                    }
                     break;
             }
         }
