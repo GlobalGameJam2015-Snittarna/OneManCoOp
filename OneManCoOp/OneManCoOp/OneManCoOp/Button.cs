@@ -29,28 +29,11 @@ namespace OneManCoOp
         }
         public override void Update()
         {
-            BeingPressed = (Hitbox.Intersects(Game1.player.Hitbox)) ? true : false;
-            //if(beingPressed && Sprite.Frame <= 2)
+            BeingPressed = (Hitbox.Intersects(Game1.player.Hitbox) || IsPressedByCorpse()) ? true : false;
+
             Sprite.AnimationSpeed = (BeingPressed & Sprite.Frame <= 2) ? Sprite.AnimationSpeed = 0.4f : Sprite.AnimationSpeed = 0;
             Sprite.Frame = (!BeingPressed) ? Sprite.Frame = 0 : Sprite.Frame = Sprite.Frame;
-            if (!BeingPressed && !RemovePress)
-            {
-                
-            }
-
-            foreach(Corpse c in Game1.corpses)
-            {
-                if(c.Hitbox.Intersects(Hitbox))
-                {
-                    BeingPressed = true;
-                    if (!BeingPressed && AddPress)
-                    {
-                        AddPress = false;
-                    }
-                    if (BeingPressed)
-                        RemovePress = false;
-                }
-            }
+            
             if (Sprite.Frame == 3)
             {
                 if (!playedSound)
@@ -66,6 +49,18 @@ namespace OneManCoOp
             }
             if (BeingPressed)
                 RemovePress = false;
+        }
+
+        bool IsPressedByCorpse()
+        {
+            foreach (Corpse c in Game1.corpses)
+            {
+                if (c.Hitbox.Intersects(Hitbox))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

@@ -36,7 +36,7 @@ namespace OneManCoOp
                 case Type.Door:
                     if(opening)
                     {
-                        Sprite.AnimationSpeed = 0.1f;
+                        if(Sprite.Frame < Sprite.Frames - 1) Sprite.AnimationSpeed = 0.1f;
                         if(Hitbox.Intersects(Game1.player.Hitbox) && Sprite.Frame >= 3)
                         {
                             if (tag > 0) Game1.player.Position = Game1.spawnPoints[tag - 1];
