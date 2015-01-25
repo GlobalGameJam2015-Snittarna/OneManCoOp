@@ -153,10 +153,12 @@ namespace OneManCoOp
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        // Just C things
+        public void DrawUi()
+        {
+            spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer), new Vector2(Camera.Position.X, Camera.Position.Y-300), Color.White);
+        }
+        
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -171,7 +173,7 @@ namespace OneManCoOp
             foreach (Ladder l in ladders) l.Draw(spriteBatch);
             foreach (Lava l in lavas) { l.Draw(spriteBatch); }
             foreach (Particle p in particles) { p.Draw(spriteBatch); }
-
+            DrawUi();
             spriteBatch.End();
             base.Draw(gameTime);
         }
