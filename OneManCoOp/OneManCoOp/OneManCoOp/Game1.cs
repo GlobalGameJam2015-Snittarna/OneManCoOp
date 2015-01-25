@@ -45,6 +45,7 @@ namespace OneManCoOp
         public static int[,] corpsesX = new int[9999, 9999];
         public static int[,] corpsesY = new int[9999, 9999];
         public static SpriteEffects[,] corpseEffect = new SpriteEffects[400, 2000];
+        public static byte[,] corpseFrame = new byte[400, 2000];
 
         public static short currentChunk = 1;
 
@@ -132,6 +133,7 @@ namespace OneManCoOp
             corpsesX[numberOfCorpses, GlobalTimer] = (int)player.Position.X;
             corpsesY[numberOfCorpses, GlobalTimer] = (int)player.Position.Y;
             corpseEffect[numberOfCorpses, GlobalTimer] = player.Effects;
+            corpseFrame[numberOfCorpses, GlobalTimer] = player.AnimationFrame;
 
             foreach (GameObject g in objects) g.Update();
             foreach (Button b in buttons) { b.Update(); }
