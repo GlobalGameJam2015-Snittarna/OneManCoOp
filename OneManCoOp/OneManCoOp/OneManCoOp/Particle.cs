@@ -29,12 +29,13 @@ namespace OneManCoOp
         public override void Update()
         {
             angle = (angle2 * 180 / (float)Math.PI);
-            vel = new Vector2((float)Math.Cos(angle)*speed, (float)Math.Sin(angle)*speed);
+            vel = new Vector2((float)Math.Cos(angle2)*speed, (float)Math.Sin(angle)*speed);
             switch(type)
             {
                 case 0:
                     speed -= 0.3f;
                     Sprite.Alpha -= 0.1f;
+                    Position += vel;
                     break;
             }
         }
