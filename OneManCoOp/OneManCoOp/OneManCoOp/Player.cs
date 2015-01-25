@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace OneManCoOp
         new private bool CollidedOnX, CollidedOnY, isOnCorpse;
 
         public byte AnimationFrame { get { return Sprite.Frame; } }
+        public SpriteEffects Effects { get { return Sprite.SpriteEffects; } }
 
         public Player(Vector2 position)
         {
