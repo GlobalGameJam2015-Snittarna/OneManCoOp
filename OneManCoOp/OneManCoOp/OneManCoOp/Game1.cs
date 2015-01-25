@@ -16,7 +16,7 @@ namespace OneManCoOp
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        public enum GameState { Won, Credits, Game }
+        public enum GameState { Won, Credits, Game, Paused }
 
         public const float GRAVITY = 1;
 
@@ -131,12 +131,18 @@ namespace OneManCoOp
             GlobalTimer++;
 
             Input.Update();
-            if (Input.newKs.IsKeyDown(Keys.Escape)) this.Exit();
             if (Input.KeyWasJustPressed(Keys.R)) GlobalTimer = maxTime;
             if (Input.KeyWasJustPressed(Keys.H)) gameState = GameState.Won;
             Camera.Follow(player.Position, new Vector2(0, 1));
 
             if (gameState == GameState.Won && Input.KeyWasJustPressed(Keys.Enter)) gameState = GameState.Credits;
+            if (gameState == GameState.Paused)
+            {
+                if (Input.KeyWasJustPressed(Keys.Escape)) gameState = GameState.Game;
+                return;
+            }
+
+            if (Input.KeyWasJustPressed(Keys.Escape)) gameState = GameState.Paused;
 
             player.Update();
 
@@ -208,8 +214,13 @@ namespace OneManCoOp
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, null, Camera.Transform);
-            if (gameState == GameState.Game)
+            if (gameState == GameState.Game || gameState == GameState.Paused)
             {
+                if (GameState.Paused == gameState)
+                {
+                    string s = "PAUSED";
+                    spriteBatch.DrawString(TextureManager.font, s, Camera.TotalOffset + Camera.Origin - TextureManager.font.MeasureString(s) / 2, Color.White);
+                }
                 Map.Draw(spriteBatch);
                 player.Draw(spriteBatch);
                 foreach (GameObject g in objects) g.Draw(spriteBatch);
