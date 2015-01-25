@@ -37,6 +37,7 @@ namespace OneManCoOp
         internal static List<Button> buttons = new List<Button>();
         internal static List<Ladder> ladders = new List<Ladder>();
         internal static List<Lava> lavas = new List<Lava>();
+        internal static List<Particle> particles = new List<Particle>();
         public static List<Vector2> spawnPoints = new List<Vector2>();
 
         internal static List<Corpse> corpses = new List<Corpse>();
@@ -121,6 +122,7 @@ namespace OneManCoOp
 
             Input.Update();
             if (Input.newKs.IsKeyDown(Keys.Escape)) this.Exit();
+            if (Input.KeyWasJustPressed(Keys.R)) GlobalTimer = maxTime;
 
             Camera.Follow(player.Position, new Vector2(0, 1));
 
@@ -134,6 +136,7 @@ namespace OneManCoOp
             foreach (Puzzel p in puzzels) { p.Update(); }
             foreach (Ladder l in ladders) l.Update();
             foreach (Lava l in lavas) { l.Update(); }
+            foreach (Particle p in particles) { p.Update(); }
 
             if (GlobalTimer == maxTime)
             {
@@ -167,6 +170,7 @@ namespace OneManCoOp
             foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
             foreach (Ladder l in ladders) l.Draw(spriteBatch);
             foreach (Lava l in lavas) { l.Draw(spriteBatch); }
+            foreach (Particle p in particles) { p.Draw(spriteBatch); }
 
             spriteBatch.End();
             base.Draw(gameTime);
