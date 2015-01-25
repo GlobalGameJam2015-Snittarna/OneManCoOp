@@ -183,11 +183,17 @@ namespace OneManCoOp
                 if (Input.KeyWasJustPressed(Keys.Escape) || Input.ButtonJustPressed(Buttons.Start)) gameState = GameState.Game;
                 return;
             }
+            else
+            {
+                
+                //roundTime++;
+            }
 
             if (Input.KeyWasJustPressed(Keys.Escape) || Input.ButtonJustPressed(Buttons.Start)) gameState = GameState.Paused;
 
             player.Update();
             roundTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+            GlobalTimer++;
             corpsesX[numberOfCorpses, GlobalTimer] = (int)player.Position.X;
             corpsesY[numberOfCorpses, GlobalTimer] = (int)player.Position.Y;
             //corpseEffect[numberOfCorpses, GlobalTimer] = player.Effects;
