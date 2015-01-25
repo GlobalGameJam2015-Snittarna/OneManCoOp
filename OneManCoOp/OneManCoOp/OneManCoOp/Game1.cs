@@ -195,6 +195,8 @@ namespace OneManCoOp
             //corpseEffect[numberOfCorpses, GlobalTimer] = player.Effects;
             //corpseFrame[numberOfCorpses, GlobalTimer] = player.AnimationFrame;
 
+            if (Input.KeyWasJustPressed(Keys.K)) player.Position = spawnPoints[0];
+
             foreach (GameObject g in objects) g.Update();
             foreach (Button b in buttons) { b.Update(); }
             foreach (Puzzel p in puzzels) { p.Update(); }
