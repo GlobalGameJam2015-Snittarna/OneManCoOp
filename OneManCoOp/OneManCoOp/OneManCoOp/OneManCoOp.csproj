@@ -16,7 +16,7 @@
     <XnaProfile>HiDef</XnaProfile>
     <XnaCrossPlatformGroupID>50d40ba8-da2d-4dff-b345-87d4dc5d2c11</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <ApplicationIcon>favicon %282%29.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -129,6 +129,7 @@
     <Compile Include="TileProperties.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon %282%29.ico" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
