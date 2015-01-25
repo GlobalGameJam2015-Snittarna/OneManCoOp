@@ -252,9 +252,9 @@ namespace OneManCoOp
                 }
                 spriteBatch.DrawString(TextureManager.font, "TIME: " + roundTime / 1000, Camera.TotalOffset + Camera.Origin - new Vector2(250, 350), Color.White);
                 if(tutorialCount < 2000) tutorialCount += 1;
-                if (tutorialCount <= 128*2)
+                if (tutorialCount <= 128*6)
                 {
-                    if (!GamePad.GetState(PlayerIndex.One).IsConnected) spriteBatch.DrawString(TextureManager.font, "A, S, D to move. W too stand on a \"ghost\". \nR to deplete your time and place a \"ghost\" \nAll buttons has to \nJump with space and W to stand on ghosts \nbe pressed down in a room by a \nplayer or \"ghost\" to open the trapdoor", new Vector2(Camera.Position.X - 400 + 32, Camera.Position.Y - 300), Color.Green);
+                    if (!GamePad.GetState(PlayerIndex.One).IsConnected) spriteBatch.DrawString(TextureManager.font, "A, S, D to move. Hold W too stand on a \"ghost\". \nR to deplete your time and place a \"ghost\"  \nJump with space \nAll buttons has to be pressed down in a room by a \nplayer or \"ghost\" to open the trapdoor", new Vector2(Camera.Position.X - 400 + 32, Camera.Position.Y - 300), Color.Green);
                     if (GamePad.GetState(PlayerIndex.One).IsConnected) spriteBatch.DrawString(TextureManager.font, "Thumbstick to move \nY to deplete your time and place a \"ghost\" \nJump with A and pull the thumbstick up to stand on ghosts \nAll buttons has to \nbe pressed down in a room by a player or \"ghost\" to open the trapdoor", new Vector2(Camera.Position.X - 400 + 32, Camera.Position.Y - 300), Color.Green);
 
                 }
