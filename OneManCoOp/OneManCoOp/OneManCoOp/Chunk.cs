@@ -68,7 +68,26 @@ namespace OneManCoOp
                                 Game1.buttons.Add(new Button(new Vector2(x, y) * Tile.SIZE, Color.Red, tag));
                                 break;
                             case 3:
-                                Game1.puzzels.Add(new Puzzel(new Vector2(x, y) * Tile.SIZE, Puzzel.Type.Door, tag, 1));
+                                byte buttonsToPress = 0;
+                                switch(tag)
+                                {
+                                    case 4:
+                                        buttonsToPress = 1;
+                                        break;
+                                    case 3:
+                                        buttonsToPress = 2;
+                                        break;
+                                    case 2:
+                                        buttonsToPress = 4;
+                                        break;
+                                    case 1:
+                                        buttonsToPress = 2;
+                                        break;
+                                    case 0:
+                                        buttonsToPress = 6;
+                                        break;
+                                }
+                                Game1.puzzels.Add(new Puzzel(new Vector2(x, y) * Tile.SIZE, Puzzel.Type.Door, tag, buttonsToPress));
                                 break;
                             case 4:
                                 Game1.lavas.Add(new Lava(new Vector2(x, y) * Tile.SIZE));

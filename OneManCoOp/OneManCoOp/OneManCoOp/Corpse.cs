@@ -32,8 +32,8 @@ namespace OneManCoOp
                 }
             }
 
-            Sprite.Frame = Game1.corpseFrame[tag, Game1.GlobalTimer];
-            Sprite.SpriteEffects = Game1.corpseEffect[tag, Game1.GlobalTimer];
+            //Sprite.Frame = Game1.corpseFrame[tag, Game1.GlobalTimer];
+            //Sprite.SpriteEffects = Game1.corpseEffect[tag, Game1.GlobalTimer];
             Position = new Vector2(Game1.corpsesX[tag, Game1.GlobalTimer], Game1.corpsesY[tag, Game1.GlobalTimer]);
             
             //Sprite.SpriteEffects = SpriteEffects.FlipHorizontally;
