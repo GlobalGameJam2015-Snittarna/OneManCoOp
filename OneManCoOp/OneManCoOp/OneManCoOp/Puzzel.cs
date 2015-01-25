@@ -13,8 +13,8 @@ namespace OneManCoOp
 
         public Type type;
 
-        byte tag;
-        byte buttonsToOpen;
+        public byte tag;
+        public byte buttonsToOpen;
         byte buttonsPressed;
 
         bool opening;

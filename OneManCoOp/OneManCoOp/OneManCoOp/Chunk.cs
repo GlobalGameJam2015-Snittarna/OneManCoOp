@@ -69,13 +69,7 @@ namespace OneManCoOp
                                 Game1.buttons.Add(new Button(new Vector2(x, y) * Tile.SIZE, Color.Red, tag));
                                 break;
                             case 3:
-                                byte buttonsToPress = 0;
-                                foreach(Button b in Game1.buttons)
-                                {
-                                    buttonsToPress += 1;
-                                }
-                                Debug.Print(buttonsToPress.ToString() + " " + tag.ToString());
-                                Game1.puzzels.Add(new Puzzel(new Vector2(x, y) * Tile.SIZE, Puzzel.Type.Door, tag, buttonsToPress));
+                                Game1.puzzels.Add(new Puzzel(new Vector2(x, y) * Tile.SIZE, Puzzel.Type.Door, tag, 0));
                                 break;
                             case 4:
                                 Game1.lavas.Add(new Lava(new Vector2(x, y) * Tile.SIZE));
@@ -86,6 +80,12 @@ namespace OneManCoOp
                         }
                     }
                 }
+
+                foreach(Button b in Game1.buttons)
+                {
+                    foreach (Puzzel p in Game1.puzzels) if (p.tag == b.Tag) p.buttonsToOpen++;
+                }
+
             }
         }
 
