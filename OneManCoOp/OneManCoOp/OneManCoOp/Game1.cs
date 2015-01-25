@@ -89,13 +89,13 @@ namespace OneManCoOp
             Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
             Camera.FollowSpeed = .5f;
 
-            player = new Player(new Vector2(500, 3000));
+            player = new Player(spawnPoints[spawnPoints.Count - 1]);
             //puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
-            puzzels.Add(new Puzzel(new Vector2(player.Position.X + 100, player.Position.Y + 128), Puzzel.Type.Door, 1, 3));
+            /*puzzels.Add(new Puzzel(new Vector2(player.Position.X + 100, player.Position.Y + 128), Puzzel.Type.Door, 1, 3));
             buttons.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.Red, 1));
             buttons.Add(new Button(new Vector2(player.Position.X -100, player.Position.Y + 128), Color.Red, 1));
             buttons.Add(new Button(new Vector2(player.Position.X - 160, player.Position.Y + 128), Color.Red, 1));
-
+            */
             maxTime = 500;
             // TODO: use this.Content to load your game content here
         }
@@ -138,7 +138,7 @@ namespace OneManCoOp
                 GlobalTimer = 0;
                 corpses.Add(new Corpse(numberOfCorpses));
                 numberOfCorpses++;
-                player.Position = SPAWNPOSITION;
+                player.Position = spawnPoints[spawnPoints.Count - 1];
             }
 
             foreach (Corpse c in corpses)
