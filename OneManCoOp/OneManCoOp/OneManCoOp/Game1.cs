@@ -23,6 +23,7 @@ namespace OneManCoOp
         public const int SCREEN_W = 832;
         public const int SCREEN_H = 720;
 
+        public static int roundTime;
         public static int GlobalTimer;
         public static int maxTime;
         public static int numberOfCorpses;
@@ -187,7 +188,7 @@ namespace OneManCoOp
             if (Input.KeyWasJustPressed(Keys.Escape) || Input.ButtonJustPressed(Buttons.Start)) gameState = GameState.Paused;
 
             player.Update();
-
+            roundTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
             corpsesX[numberOfCorpses, GlobalTimer] = (int)player.Position.X;
             corpsesY[numberOfCorpses, GlobalTimer] = (int)player.Position.Y;
             //corpseEffect[numberOfCorpses, GlobalTimer] = player.Effects;
@@ -239,12 +240,13 @@ namespace OneManCoOp
                 if ((maxTime - GlobalTimer) / 60 <= 3)
                 {
                     flashCount += 1;
-                    if (flashCount % 4 == 0) spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
+                    if (flashCount % 4 == 0) spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X - 100, Camera.Position.Y - 350), tmpColor);
                 }
                 else
                 {
-                    spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
+                    spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X- 100, Camera.Position.Y - 350), tmpColor);
                 }
+                spriteBatch.DrawString(TextureManager.font, "TIME: " + roundTime / 1000, Camera.TotalOffset + Camera.Origin - new Vector2(250, 350), Color.White);
                 if(tutorialCount < 2000) tutorialCount += 1;
                 if (tutorialCount <= 128*2)
                 {
@@ -282,6 +284,7 @@ namespace OneManCoOp
                 }
                 Map.Draw(spriteBatch);
                 player.Draw(spriteBatch);
+                
                 foreach (GameObject g in objects) g.Draw(spriteBatch);
                 foreach (Corpse c in corpses) { c.Draw(spriteBatch); }
                 foreach (Button b in buttons) { b.Draw(spriteBatch); }
