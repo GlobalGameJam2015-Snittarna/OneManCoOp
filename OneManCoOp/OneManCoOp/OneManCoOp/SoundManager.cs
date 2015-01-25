@@ -18,7 +18,8 @@ namespace OneManCoOp
         public static void Load(ContentManager content)
         {
             buttonPress = content.Load<SoundEffect>("buttonPress");
-
+            lava1 = content.Load<SoundEffect>("lava1");
+            lava2 = content.Load<SoundEffect>("lava2");
         }
     }
 }
