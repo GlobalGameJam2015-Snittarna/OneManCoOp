@@ -14,8 +14,8 @@ namespace OneManCoOp
         public const byte sizeX = 26, sizeY = 85;
         public static Point sizePx { get { return new Point(sizeX * Tile.SIZE, sizeY * Tile.SIZE); } }
 
-        // 0 = ladder, 1 = spawnPoint, 2 = button, 3 = door, 4 = lava
-        static Color[] itemColors = new Color[] { new Color(255, 106, 0), new Color(64, 64, 64), new Color(255, 216, 0), new Color(0, 38, 255), new Color(255, 0, 0) };
+        // 0 = ladder, 1 = spawnPoint, 2 = button, 3 = door, 4 = lava, 5 = booster
+        static Color[] itemColors = new Color[] { new Color(255, 106, 0), new Color(64, 64, 64), new Color(255, 216, 0), new Color(0, 38, 255), new Color(255, 0, 0), new Color(76, 255, 0) };
 
         public Tile[,] Tiles;
         public Vector2 position { get; private set; }
@@ -93,6 +93,7 @@ namespace OneManCoOp
                                 Game1.lavas.Add(new Lava(new Vector2(x, y) * Tile.SIZE));
                                 break;
                             case 5:
+                                Game1.boosters.Add(new Booster(new Vector2(x, y) * Tile.SIZE));
                                 break;
                         }
                     }

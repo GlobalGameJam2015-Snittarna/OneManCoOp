@@ -19,7 +19,8 @@ namespace OneManCoOp
             button,
             ladder,
             lava,
-            particle;
+            particle,
+            booster;
 
         public static void Load(ContentManager content)
         {
@@ -31,6 +32,7 @@ namespace OneManCoOp
             ladder = content.Load<Texture2D>("ladder");
             lava = content.Load<Texture2D>("lavaAnimation");
             particle = content.Load<Texture2D>("particle");
+            booster = content.Load<Texture2D>("booster");
 
             font = content.Load<SpriteFont>("font");
         }

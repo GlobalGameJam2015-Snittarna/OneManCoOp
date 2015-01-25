@@ -79,7 +79,15 @@ namespace OneManCoOp
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D)) acceleration.X += 1;
                 if ((Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Space) || Input.newGs.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Pressed) && !CollidedOnY) acceleration.Y -= 1;
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S) && !CollidedOnY) acceleration.Y += 1;
-                if ((Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) || Input.ButtonJustPressed(Microsoft.Xna.Framework.Input.Buttons.A)) && CollidedOnY) Velocity -= new Vector2(0, JUMP_SPEED);
+                if ((Input.KeyWasJustPressed(Microsoft.Xna.Framework.Input.Keys.Space) || Input.ButtonJustPressed(Microsoft.Xna.Framework.Input.Buttons.A)) && CollidedOnY)
+                {
+                    if(IsTouchingABooster())
+                    {
+                        Velocity -= new Vector2(0, JUMP_SPEED) * 3;
+
+                    }
+                    else Velocity -= new Vector2(0, JUMP_SPEED);
+                }
 
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S) || Input.newGs.ThumbSticks.Left.Y < -.5f) isOnCorpse = false;
                 if (Input.newKs.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.W) || Input.newGs.ThumbSticks.Left.Y > .5f) isOnCorpse = true;
@@ -96,6 +104,16 @@ namespace OneManCoOp
 
                 Move();
             }
+        }
+
+        bool IsTouchingABooster()
+        {
+            foreach (Booster b in Game1.boosters) if (Hitbox.Intersects(b.Hitbox))
+                {
+                    b.Extend();
+                    return true;
+                }
+            return false;
         }
 
         new void Move()
