@@ -19,6 +19,8 @@ namespace OneManCoOp
 
         bool opening;
 
+        bool playedSound;
+
         public Puzzel(Vector2 position2, Type type2, byte tag2, byte buttonsToOpen2)
         {
             buttonsToOpen = buttonsToOpen2;
@@ -43,6 +45,15 @@ namespace OneManCoOp
                             else Game1.gameState = Game1.GameState.Won;
                             Game1.maxTime = 500 * (Game1.puzzels.Count + 1 - tag);
                         }
+                        if(Sprite.Frame == 4 && !playedSound)
+                        {
+                            SoundManager.door.Play();
+                            playedSound = true;
+                        }
+                    }
+                    else
+                    {
+                        playedSound = false;
                     }
                     foreach(Button b in Game1.buttons)
                     {
