@@ -25,6 +25,7 @@ namespace OneManCoOp
             Sprite = new Sprite(TextureManager.button, position2, new Vector2(32, 32), 4, new Point(32, 32), 0);
             Position = position2;
             Sprite.Color = color2;
+            Sprite.Origin = Vector2.Zero;
         }
         public override void Update()
         {

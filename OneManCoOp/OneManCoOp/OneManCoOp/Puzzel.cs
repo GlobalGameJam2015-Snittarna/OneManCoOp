@@ -25,6 +25,7 @@ namespace OneManCoOp
             tag = tag2;
             AssignSprite(position2);
             type = type2;
+            Sprite.Origin = Vector2.Zero;
         }
 
         public override void Update()
