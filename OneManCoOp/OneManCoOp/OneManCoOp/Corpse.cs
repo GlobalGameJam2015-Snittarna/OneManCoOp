@@ -20,6 +20,18 @@ namespace OneManCoOp
 
         public void Update(byte frame)
         {
+            if (Game1.GlobalTimer > 0)
+            {
+                if (Game1.corpsesX[tag, Game1.GlobalTimer] == 0)
+                {
+                    Game1.corpsesX[tag, Game1.GlobalTimer] = Game1.corpsesX[tag, Game1.GlobalTimer - 1];
+                }
+                if (Game1.corpsesY[tag, Game1.GlobalTimer] == 0)
+                {
+                    Game1.corpsesY[tag, Game1.GlobalTimer] = Game1.corpsesY[tag, Game1.GlobalTimer - 1];
+                }
+            }
+            
             Position = new Vector2(Game1.corpsesX[tag, Game1.GlobalTimer], Game1.corpsesY[tag, Game1.GlobalTimer]);
             Sprite.Frame = frame;
         } 

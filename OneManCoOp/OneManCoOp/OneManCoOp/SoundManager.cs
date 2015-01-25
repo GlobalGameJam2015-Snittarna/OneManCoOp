@@ -12,6 +12,7 @@ namespace OneManCoOp
     {
         public static SoundEffect
             buttonPress;
+
         public static void Load(ContentManager content)
         {
             buttonPress = content.Load<SoundEffect>("buttonPress");
