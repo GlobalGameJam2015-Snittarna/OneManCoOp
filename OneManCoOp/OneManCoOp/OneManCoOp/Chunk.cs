@@ -9,7 +9,7 @@ namespace OneManCoOp
 {
     class Chunk
     {
-        const byte levels = 6;
+        const byte levels = 5;
 
         public const byte sizeX = 26, sizeY = 85;
         public static Point sizePx { get { return new Point(sizeX * Tile.SIZE, sizeY * Tile.SIZE); } }
@@ -71,6 +71,7 @@ namespace OneManCoOp
                                 Game1.puzzels.Add(new Puzzel(new Vector2(x, y) * Tile.SIZE, Puzzel.Type.Door, tag, 1));
                                 break;
                             case 4:
+                                Game1.lavas.Add(new Lava(new Vector2(x, y) * Tile.SIZE));
                                 break;
                             case 5:
                                 break;

@@ -98,7 +98,7 @@ namespace OneManCoOp
             }
         }
 
-        void Move()
+        new void Move()
         {
             CollidedOnX = CollidedOnY = false;
 
