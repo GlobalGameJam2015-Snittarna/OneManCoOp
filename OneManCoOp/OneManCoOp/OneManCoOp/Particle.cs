@@ -36,6 +36,7 @@ namespace OneManCoOp
                     speed -= 0.3f;
                     Sprite.Alpha -= 0.1f;
                     Position += vel;
+                    if (Sprite.Alpha < 0) Dead = true;
                     break;
             }
         }

@@ -158,6 +158,13 @@ namespace OneManCoOp
             {
                 c.Update();
             }
+
+            for (int i = 0; i < particles.Count; i++)
+            {
+                if (particles[i].Dead)
+                    particles.RemoveAt(i);
+            }
+
             base.Update(gameTime);
         }
 
