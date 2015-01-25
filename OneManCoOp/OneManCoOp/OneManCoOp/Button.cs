@@ -21,6 +21,8 @@ namespace OneManCoOp
 
         bool hasRotated;
 
+        bool countedFor;
+
         public Button(Vector2 position2, Color color2, byte tag2)
         {
             Tag = tag2;

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace OneManCoOp
 {
@@ -69,24 +70,11 @@ namespace OneManCoOp
                                 break;
                             case 3:
                                 byte buttonsToPress = 0;
-                                switch(tag)
+                                foreach(Button b in Game1.buttons)
                                 {
-                                    case 4:
-                                        buttonsToPress = 1;
-                                        break;
-                                    case 3:
-                                        buttonsToPress = 2;
-                                        break;
-                                    case 2:
-                                        buttonsToPress = 4;
-                                        break;
-                                    case 1:
-                                        buttonsToPress = 2;
-                                        break;
-                                    case 0:
-                                        buttonsToPress = 6;
-                                        break;
+                                    buttonsToPress += 1;
                                 }
+                                Debug.Print(buttonsToPress.ToString() + " " + tag.ToString());
                                 Game1.puzzels.Add(new Puzzel(new Vector2(x, y) * Tile.SIZE, Puzzel.Type.Door, tag, buttonsToPress));
                                 break;
                             case 4:
