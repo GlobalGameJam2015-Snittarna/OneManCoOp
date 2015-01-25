@@ -16,6 +16,8 @@ namespace OneManCoOp
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        public enum GameState { Won, Credits, Game }
+
         public const float GRAVITY = 1;
 
         public const int SCREEN_W = 832;
@@ -32,7 +34,7 @@ namespace OneManCoOp
 
         public byte flashCount;
 
-        public static bool Won;
+        public static GameState gameState;
 
         internal static Player player;
 
@@ -82,6 +84,8 @@ namespace OneManCoOp
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            gameState = GameState.Game;
+
             Input.Initialize();
             
             TextureManager.Load(Content);
@@ -129,8 +133,10 @@ namespace OneManCoOp
             Input.Update();
             if (Input.newKs.IsKeyDown(Keys.Escape)) this.Exit();
             if (Input.KeyWasJustPressed(Keys.R)) GlobalTimer = maxTime;
-            if (Input.KeyWasJustPressed(Keys.H)) Won = true;
+            if (Input.KeyWasJustPressed(Keys.H)) gameState = GameState.Won;
             Camera.Follow(player.Position, new Vector2(0, 1));
+
+            if (gameState == GameState.Won && Input.KeyWasJustPressed(Keys.Enter)) gameState = GameState.Credits;
 
             player.Update();
 
@@ -171,12 +177,13 @@ namespace OneManCoOp
         // Just C things
         public void DrawUi()
         {
-            if (Won)
+            switch(gameState)
             {
+                case GameState.Won:
                 spriteBatch.DrawString(TextureManager.font, "YOU WON THE GAME!", new Vector2(Camera.Position.X-100, Camera.Position.Y), Color.Yellow);
-            }
-            else
-            {
+                    break;
+            
+                case GameState.Game:
                 Color tmpColor = new Color(255, 255 - (maxTime - GlobalTimer)/5, 255 - (maxTime - GlobalTimer)/5);
                 
                 if ((maxTime - GlobalTimer) / 60 <= 3)
@@ -188,6 +195,12 @@ namespace OneManCoOp
                 {
                     spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
                 }
+                    break;
+
+                case GameState.Credits:
+                    string s = "Made by:\nJohannes Larsson\nTom Leonardsson\nKristoffer Franzon\nEmil Jönsson";
+                    spriteBatch.DrawString(TextureManager.font, s, Camera.TotalOffset + Camera.Origin - TextureManager.font.MeasureString(s) / 2, Color.White);
+                    break;
             }
         }
         
@@ -195,7 +208,7 @@ namespace OneManCoOp
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, null, Camera.Transform);
-            if (!Won)
+            if (gameState == GameState.Game)
             {
                 Map.Draw(spriteBatch);
                 player.Draw(spriteBatch);

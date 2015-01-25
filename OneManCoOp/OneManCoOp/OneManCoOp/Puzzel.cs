@@ -40,7 +40,7 @@ namespace OneManCoOp
                         if(Hitbox.Intersects(Game1.player.Hitbox) && Sprite.Frame >= 3)
                         {
                             if (tag > 0) Game1.player.Position = Game1.spawnPoints[tag - 1];
-                            else Game1.Won = true;
+                            else Game1.gameState = Game1.GameState.Won;
                             Game1.maxTime = 500 * (Game1.puzzels.Count + 1 - tag);
                         }
                     }
