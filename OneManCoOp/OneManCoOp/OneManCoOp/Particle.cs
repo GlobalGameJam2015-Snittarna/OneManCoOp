@@ -34,7 +34,7 @@ namespace OneManCoOp
             {
                 case 0:
                     speed -= 0.3f;
-                    Sprite.Alpha - 0.1f;
+                    Sprite.Alpha -= 0.1f;
                     break;
             }
         }
