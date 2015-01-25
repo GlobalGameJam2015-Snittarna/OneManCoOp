@@ -18,7 +18,7 @@ namespace OneManCoOp
             Sprite.Alpha = 0.5f;
         }
 
-        public void Update(byte frame)
+        public void Update()
         {
             if (Game1.GlobalTimer > 0)
             {
@@ -31,9 +31,10 @@ namespace OneManCoOp
                     Game1.corpsesY[tag, Game1.GlobalTimer] = Game1.corpsesY[tag, Game1.GlobalTimer - 1];
                 }
             }
-            
+
+            Sprite.SpriteEffects = Game1.corpseEffect[tag, Game1.GlobalTimer];
             Position = new Vector2(Game1.corpsesX[tag, Game1.GlobalTimer], Game1.corpsesY[tag, Game1.GlobalTimer]);
-            Sprite.Frame = frame;
+            
             //Sprite.SpriteEffects = SpriteEffects.FlipHorizontally;
         } 
     }
