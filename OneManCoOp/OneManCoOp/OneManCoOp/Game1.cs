@@ -138,6 +138,7 @@ namespace OneManCoOp
             ladders.Clear();
             lavas.Clear();
             particles.Clear();
+            corpses.Clear();
 
             gameState = GameState.Game;
 
@@ -172,8 +173,6 @@ namespace OneManCoOp
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            GlobalTimer++;
-
             Input.Update();
             if (Input.KeyWasJustPressed(Keys.R) || Input.ButtonJustPressed(Buttons.Y)) GlobalTimer = maxTime;
             Camera.Follow(player.Position, new Vector2(0, 1));
