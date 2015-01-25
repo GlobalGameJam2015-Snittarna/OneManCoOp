@@ -133,7 +133,7 @@ namespace OneManCoOp
             corpsesX[numberOfCorpses, GlobalTimer] = (int)player.Position.X;
             corpsesY[numberOfCorpses, GlobalTimer] = (int)player.Position.Y;
             //corpseEffect[numberOfCorpses, GlobalTimer] = player.Effects;
-            corpseFrame[numberOfCorpses, GlobalTimer] = player.AnimationFrame;
+            //corpseFrame[numberOfCorpses, GlobalTimer] = player.AnimationFrame;
 
             foreach (GameObject g in objects) g.Update();
             foreach (Button b in buttons) { b.Update(); }

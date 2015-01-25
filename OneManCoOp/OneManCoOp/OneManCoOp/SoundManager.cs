@@ -11,11 +11,14 @@ namespace OneManCoOp
     class SoundManager
     {
         public static SoundEffect
-            buttonPress;
+            buttonPress,
+            lava1,
+            lava2;
 
         public static void Load(ContentManager content)
         {
             buttonPress = content.Load<SoundEffect>("buttonPress");
+
         }
     }
 }
