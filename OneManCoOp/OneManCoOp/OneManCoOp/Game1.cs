@@ -243,7 +243,7 @@ namespace OneManCoOp
                 {
                     spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
                 }
-                tutorialCount += 1;
+                if(tutorialCount < 128*4) tutorialCount += 1;
                 if (tutorialCount <= 128*4)
                 {
                     if(!GamePad.GetState(PlayerIndex.One).IsConnected) spriteBatch.DrawString(TextureManager.font, "W, A, S, D to move \nR to delplete your time and place a \"ghost\" \nAll buttons has to \nbe pressed down in a room by a player or \"ghost\" to open the trapdoor", new Vector2(Camera.Position.X - 400+32, Camera.Position.Y - 300), Color.Green);
