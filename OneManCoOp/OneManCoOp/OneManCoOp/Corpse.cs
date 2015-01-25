@@ -34,6 +34,7 @@ namespace OneManCoOp
             
             Position = new Vector2(Game1.corpsesX[tag, Game1.GlobalTimer], Game1.corpsesY[tag, Game1.GlobalTimer]);
             Sprite.Frame = frame;
+            //Sprite.SpriteEffects = SpriteEffects.FlipHorizontally;
         } 
     }
 }
