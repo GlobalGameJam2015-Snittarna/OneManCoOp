@@ -81,11 +81,5 @@ namespace OneManCoOp
                     break;
             }
         }
-
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
-        {
-            spriteBatch.DrawString(TextureManager.font, tag.ToString(), Position, Color.White);
-            base.Draw(spriteBatch);
-        }
     }
 }
