@@ -36,6 +36,8 @@ namespace OneManCoOp
 
         byte creditsDelay;
 
+        short tutorialCount;
+
         public static GameState gameState;
 
         internal static Player player;
@@ -156,6 +158,7 @@ namespace OneManCoOp
             buttons.Add(new Button(new Vector2(player.Position.X - 160, player.Position.Y + 128), Color.Red, 1));
             */
             maxTime = 500;
+            tutorialCount = 0;
             // TODO: use this.Content to load your game content here
         }
         /// <summary>
@@ -224,7 +227,7 @@ namespace OneManCoOp
             {
                 case GameState.Won:
                 spriteBatch.DrawString(TextureManager.font, "YOU WON THE GAME!", new Vector2(Camera.Position.X-100, Camera.Position.Y), Color.Yellow);
-
+                spriteBatch.DrawString(TextureManager.font, "Press enter", new Vector2(Camera.Position.X, Camera.Position.Y + 100), Color.White);
                     break;
             
                 case GameState.Game:
@@ -239,11 +242,19 @@ namespace OneManCoOp
                 {
                     spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer) / 60, new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
                 }
+                tutorialCount += 1;
+                if (tutorialCount <= 128*4)
+                {
+                    if(!GamePad.GetState(PlayerIndex.One).IsConnected) spriteBatch.DrawString(TextureManager.font, "W, A, S, D to move \nR to delplete your time and place a \"ghost\" \nAll buttons has to \nbe pressed down in a room by a player or \"ghost\" to open the trapdoor", new Vector2(Camera.Position.X - 400+32, Camera.Position.Y - 300), Color.Green);
+                    if (GamePad.GetState(PlayerIndex.One).IsConnected) spriteBatch.DrawString(TextureManager.font, "Thumbstick to move \nY to delplete your time and place a \"ghost\" \nAll buttons has to \nbe pressed down in a room by a player or \"ghost\" to open the trapdoor", new Vector2(Camera.Position.X - 400 + 32, Camera.Position.Y - 300), Color.Green);
+
+                }
                     break;
 
                 case GameState.Credits:
                     string s = "Made by:\nJohannes Larsson\nTom Leonardsson\nKristoffer Franzon\nEmil Jönsson";
                     spriteBatch.DrawString(TextureManager.font, s, Camera.TotalOffset + Camera.Origin - TextureManager.font.MeasureString(s) / 2, Color.White);
+                    spriteBatch.DrawString(TextureManager.font, "Press enter", new Vector2(Camera.Position.X, Camera.Position.Y+100), Color.Yellow);
                     creditsDelay += 1;
                     if (Input.KeyWasJustPressed(Keys.Enter) && creditsDelay >= 10)
                     {
