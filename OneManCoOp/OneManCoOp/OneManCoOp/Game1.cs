@@ -85,11 +85,11 @@ namespace OneManCoOp
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            List<Puzzel> puzzels = new List<Puzzel>();
-            List<Button> buttons = new List<Button>();
-            List<Ladder> ladders = new List<Ladder>();
-            List<Lava> lavas = new List<Lava>();
-            List<Particle> particles = new List<Particle>();
+            puzzels.Clear();
+            buttons.Clear();
+            ladders.Clear();
+            lavas.Clear();
+            particles.Clear();
 
             gameState = GameState.Game;
 
@@ -127,7 +127,37 @@ namespace OneManCoOp
         {
             // TODO: Unload any non ContentManager content here
         }
+        public void resetGame()
+        {
+            puzzels.Clear();
+            buttons.Clear();
+            ladders.Clear();
+            lavas.Clear();
+            particles.Clear();
 
+            gameState = GameState.Game;
+
+            Input.Initialize();
+            
+            objects = new List<GameObject>();
+
+            Map.Initialize();
+
+            Camera.Position = new Vector2(Chunk.sizePx.X, Chunk.sizePx.Y) / 2;
+            Camera.Scale = 1;
+            Camera.Origin = new Vector2(SCREEN_W, SCREEN_H) / 2;
+            Camera.FollowSpeed = .5f;
+
+            player = new Player(spawnPoints[spawnPoints.Count - 1]);
+            //puzzels.Add(new Puzzel(player.Position, Puzzel.Type.Door, 0, 1));
+            /*puzzels.Add(new Puzzel(new Vector2(player.Position.X + 100, player.Position.Y + 128), Puzzel.Type.Door, 1, 3));
+            buttons.Add(new Button(new Vector2(player.Position.X+100, player.Position.Y+128), Color.Red, 1));
+            buttons.Add(new Button(new Vector2(player.Position.X -100, player.Position.Y + 128), Color.Red, 1));
+            buttons.Add(new Button(new Vector2(player.Position.X - 160, player.Position.Y + 128), Color.Red, 1));
+            */
+            maxTime = 500;
+            // TODO: use this.Content to load your game content here
+        }
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -217,7 +247,8 @@ namespace OneManCoOp
                     creditsDelay += 1;
                     if (Input.KeyWasJustPressed(Keys.Enter) && creditsDelay >= 10)
                     {
-                        //LoadContent();
+                        creditsDelay = 0;
+                        resetGame();
                         gameState = GameState.Game;
                     }
                     break;
