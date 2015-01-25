@@ -9,6 +9,8 @@ namespace OneManCoOp
 {
     class TextureManager
     {
+        public static SpriteFont font;
+
         public static Texture2D 
             map, 
             tiles,
@@ -29,6 +31,8 @@ namespace OneManCoOp
             ladder = content.Load<Texture2D>("ladder");
             lava = content.Load<Texture2D>("lavaAnimation");
             particle = content.Load<Texture2D>("particle");
+
+            font = content.Load<SpriteFont>("font");
         }
     }
 }
