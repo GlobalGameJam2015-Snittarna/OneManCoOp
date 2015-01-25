@@ -30,6 +30,8 @@ namespace OneManCoOp
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public static bool Won;
+
         internal static Player player;
 
         internal static List<GameObject> objects;
@@ -125,7 +127,7 @@ namespace OneManCoOp
             Input.Update();
             if (Input.newKs.IsKeyDown(Keys.Escape)) this.Exit();
             if (Input.KeyWasJustPressed(Keys.R)) GlobalTimer = maxTime;
-
+            if (Input.KeyWasJustPressed(Keys.H)) Won = true;
             Camera.Follow(player.Position, new Vector2(0, 1));
 
             player.Update();
@@ -160,24 +162,36 @@ namespace OneManCoOp
         // Just C things
         public void DrawUi()
         {
-            spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer), new Vector2(Camera.Position.X, Camera.Position.Y-300), Color.White);
+            if (Won)
+            {
+                spriteBatch.DrawString(TextureManager.font, "YOU WON THE GAME!", new Vector2(Camera.Position.X-100, Camera.Position.Y), Color.Yellow);
+            }
+            else
+            {
+                Color tmpColor = new Color(255, 255 - (maxTime - GlobalTimer)/5, 255 - (maxTime - GlobalTimer)/5);
+                spriteBatch.DrawString(TextureManager.font, "TIME LEFT: " + (maxTime - GlobalTimer), new Vector2(Camera.Position.X, Camera.Position.Y - 300), tmpColor);
+            }
         }
         
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, null, Camera.Transform);
-
-            Map.Draw(spriteBatch);
-            player.Draw(spriteBatch);
-            foreach (GameObject g in objects) g.Draw(spriteBatch);
-            foreach (Corpse c in corpses) { c.Draw(spriteBatch); }
-            foreach (Button b in buttons) { b.Draw(spriteBatch); }
-            foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
-            foreach (Ladder l in ladders) l.Draw(spriteBatch);
-            foreach (Lava l in lavas) { l.Draw(spriteBatch); }
-            foreach (Particle p in particles) { p.Draw(spriteBatch); }
-            DrawUi();
+            if (!Won)
+            {
+                Map.Draw(spriteBatch);
+                player.Draw(spriteBatch);
+                foreach (GameObject g in objects) g.Draw(spriteBatch);
+                foreach (Corpse c in corpses) { c.Draw(spriteBatch); }
+                foreach (Button b in buttons) { b.Draw(spriteBatch); }
+                foreach (Puzzel p in puzzels) { p.Draw(spriteBatch); }
+                foreach (Ladder l in ladders) l.Draw(spriteBatch);
+                foreach (Lava l in lavas) { l.Draw(spriteBatch); }
+                foreach (Particle p in particles) { p.Draw(spriteBatch); }
+                DrawUi();
+            }
+            else
+                DrawUi();
             spriteBatch.End();
             base.Draw(gameTime);
         }

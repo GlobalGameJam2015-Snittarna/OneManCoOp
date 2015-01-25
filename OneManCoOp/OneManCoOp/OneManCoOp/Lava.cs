@@ -18,7 +18,7 @@ namespace OneManCoOp
         public override void Update()
         {
             Random random = new Random();
-            Game1.particles.Add(new Particle(new Vector2(Position.X+random.Next(32-8), Position.Y +  random.Next(32)), 0, random.Next(-110,-70), random.Next(1, 4), Color.Orange));
+            //Game1.particles.Add(new Particle(new Vector2(Position.X+random.Next(32-8), Position.Y +  random.Next(32)), 0, random.Next(-110,-70), random.Next(1, 4), Color.Orange));
             if(Game1.player.Hitbox.Intersects(Hitbox))
             {
                 if (!playedSound)
